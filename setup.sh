@@ -1,3 +1,5 @@
+sudo nixos-rebuild switch --flake git+https://github.com/4c74356b41/nixos.git --no-write-lock-file --refresh
+
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 flatpak install flathub com.microsoft.Edge
 flatpak install flathub com.brave.Browser
@@ -19,5 +21,3 @@ flatpak override --user --filesystem=xdg-run/podman com.visualstudio.code
 flatpak override --user --filesystem=/run/user/$(id -u)/podman/podman.sock com.visualstudio.code
 flatpak override --user --socket=podman com.visualstudio.code
 systemctl --user enable --now podman.socket
-
-mkdir downloads
