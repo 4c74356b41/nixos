@@ -24,6 +24,10 @@
   };
   programs.bash.enable = true;
 
+  services.onedrive = {
+    enable = true;
+  };
+
   wayland.windowManager.sway = {
     enable = true;
     package = null;
