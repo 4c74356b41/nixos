@@ -37,7 +37,7 @@
         };
       };
     };
-    onerive = {
+    onedrive = {
       enable = true;
     };
     flatpak = {
