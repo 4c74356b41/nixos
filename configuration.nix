@@ -71,11 +71,12 @@
   virtualisation = {
     containers = {
       enable = true;
-      registries = {
-        search = [ "docker.io" ];
-        insecure = [ ];
-        block = [ ];
-      };
+      registries.settings.unqualified-search-registries = [
+        "docker.io"
+        "ghcr.io"
+        "quay.io"
+        "mcr.microsoft.com"
+      ];
     };
     podman = {
       enable = true;
