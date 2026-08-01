@@ -32,6 +32,13 @@
   };
   programs.bash.enable = true;
 
+  systemd.user.tmpfiles.rules = [
+    "d %h/_git 0755 - - -"
+    "d %h/downloads 0755 - - -"
+    "d %h/dl 0755 - - -"
+    "d %h/tests 0755 - - -"
+  ];
+
   wayland.windowManager.sway = {
     enable = true;
     package = null;
