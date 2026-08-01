@@ -5,6 +5,14 @@
   ];
 
   home = {
+    file.".config/onedrive/config".text = ''
+      sync_dir = "/home/sway/dl"
+      skip_dir = "tb"
+      skip_dir = "Pictures"
+      skip_dir = "Desktop"
+      skip_dir = "Attachments"
+      skip_dir = "ArrowBackup"
+    '';
     username = "sway";
     homeDirectory = "/home/sway";
     stateVersion = "26.05";
