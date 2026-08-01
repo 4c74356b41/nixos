@@ -91,4 +91,6 @@
       "networkmanager"
     ];
   };
+
+  stateVersion = "26.05";
 }
