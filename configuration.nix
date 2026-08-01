@@ -39,6 +39,14 @@
     };
     onedrive = {
       enable = true;
+      config = ''
+        sync_dir = "/home/sway/dl"
+        skip_dir = "tb"
+        skip_dir = "Pictures"
+        skip_dir = "Destkop"
+        skip_dir = "Attachements"
+        skip_dir = "ArrowBackup"
+      '';
     };
     flatpak = {
       enable = true;
