@@ -7,7 +7,6 @@
   home = {
     username = "sway";
     homeDirectory = "/home/sway";
-    stateVersion = "26.05";
     packages = with pkgs; [
       foot
       rofi
