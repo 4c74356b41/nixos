@@ -74,6 +74,7 @@
       registries.settings.unqualified-search-registries = [
         "docker.io"
         "ghcr.io"
+        "mirror.gcr.io"
         "quay.io"
         "mcr.microsoft.com"
       ];
