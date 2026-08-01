@@ -18,6 +18,11 @@
     waybar.enable = false;
   };
 
+  environment.systemPackages = with pkgs; [
+    git
+    gh
+  ];
+
   services = {
     greetd = {
       enable = true;
