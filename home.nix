@@ -2,17 +2,10 @@
 {
   imports = [
     ./waybar.nix
+    ./dotfiles.nix
   ];
 
   home = {
-    file.".config/onedrive/config".text = ''
-      sync_dir = "/home/sway/dl"
-      skip_dir = "tb"
-      skip_dir = "Pictures"
-      skip_dir = "Desktop"
-      skip_dir = "Attachments"
-      skip_dir = "ArrowBackup"
-    '';
     username = "sway";
     homeDirectory = "/home/sway";
     stateVersion = "26.05";
@@ -30,14 +23,6 @@
       p7zip
     ];
   };
-  programs.bash.enable = true;
-
-  systemd.user.tmpfiles.rules = [
-    "d %h/_git 0755 - - -"
-    "d %h/downloads 0755 - - -"
-    "d %h/dl 0755 - - -"
-    "d %h/tests 0755 - - -"
-  ];
 
   wayland.windowManager.sway = {
     enable = true;
@@ -65,7 +50,7 @@
         { command = "flatpak run com.rtosta.zapzap"; }
         { command = "flatpak run org.keepassxc.KeePassXC"; }
         { command = "flatpak run org.mozilla.thunderbird_esr"; }
-        { command = "flatpak run flathub org.ksnip.ksnip"; }
+        { command = "flatpak run org.ksnip.ksnip"; }
         { command = "flatpak run com.microsoft.Edge"; }
         { command = "flatpak run com.brave.Browser";}
 
@@ -102,7 +87,8 @@
       assigns = {
         "1" = [ { app_id = "foot"; } ];
         "2" = [ { app_id = "org.telegram.desktop"; } { app_id = "com.rtosta.zapzap"; } ];
-        "3" = [ { app_id = "org.keepassxc.KeePassXC"; } { app_id = "org.mozilla.thunderbird_esr"; } { app_id = "org.ksnip.ksnip"; } ];
+        "3" = [ { app_id = "org.keepassxc.KeePassXC"; } { app_id = "org.mozilla.thunderbird_esr"; } ];
+        "4" = [ { app_id = "org.ksnip.ksnip"; } ];
         "5" = [ { app_id = "code"; } ];
         "6" = [ { app_id = "brave-browser"; } ];
         "7" = [ { app_id = "microsoft-edge"; } ];
