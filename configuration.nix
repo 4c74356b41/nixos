@@ -88,6 +88,7 @@
     extraGroups = [
       "wheel"
       "podman"
+      "networkmanager"
     ];
   };
 }
