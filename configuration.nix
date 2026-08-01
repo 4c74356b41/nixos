@@ -24,6 +24,10 @@
   ];
 
   services = {
+    speechd = {
+      enable = false;
+    };
+
     greetd = {
       enable = true;
       settings = {
@@ -33,8 +37,8 @@
         };
       };
     };
-    speechd = {
-      enable = false;
+    onerive = {
+      enable = true;
     };
     flatpak = {
       enable = true;
