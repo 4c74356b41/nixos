@@ -4,10 +4,20 @@
     ( modulesPath + "/installer/scan/not-detected.nix" )
   ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "thunderbolt" "usbhid" "usb_storage" "sd_mod" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd" ];
-  boot.extraModulePackages = [ ];
+  boot = {
+    initrd = {
+      availableKernelModules = [ "nvme" "xhci_pci" "thunderbolt" "usbhid" "usb_storage" "sd_mod" ];
+      kernelModules = [ ];
+    };
+    swraid = {
+      enable = true;
+      mdadmConf = ''
+        PROGRAM ${pkgs.inetutils}/bin/logger -t mdadm-raid-alert
+      '';
+    };
+    kernelModules = [ "kvm-amd" ];
+    extraModulePackages = [ ];
+  };
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/165aecac-61c8-477b-9e5f-2d561242aeb6";
@@ -28,6 +38,4 @@
     bluetooth.powerOnBoot = true;
     cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   };
-
-  boot.swraid.enable = true;
 }

@@ -4,11 +4,18 @@
     ./hardware-configuration.nix
   ];
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  
-  networking.networkmanager.enable = true;
   time.timeZone = "Europe/Minsk";
+  boot = {
+    loader.systemd-boot.enable = true;
+    loader.efi.canTouchEfiVariables = true;
+  };
+  
+  networking = {
+    networkmanager = {
+      enable = true;
+      dns = "systemd-resolved";
+    };
+  };
 
   programs = {
     sway = {
@@ -17,11 +24,6 @@
     };
     waybar.enable = false;
   };
-
-  environment.systemPackages = with pkgs; [
-    git
-    gh
-  ];
 
   services = {
     speechd = {
@@ -49,6 +51,9 @@
       pulse.enable = true;
     };
     blueman = {
+      enable = true;
+    };
+    resolved = {
       enable = true;
     };
   };

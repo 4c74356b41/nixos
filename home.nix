@@ -10,19 +10,54 @@
     homeDirectory = "/home/sway";
     stateVersion = "26.05";
     packages = with pkgs; [
-      foot
+      # quality of life
       rofi
       grim
       slurp
       wl-clipboard
-      thunar
       copyq
+
+      # files
+      thunar
+      p7zip
+      
+      # wifi
       networkmanagerapplet
       networkmanager_dmenu
+
+      # bluetooth
       blueman
       playerctl
-      p7zip
+
+      # terminal\shell
+      foot
+      powershell
+
+      # tools
+      git
+      gh
+      
+      kubectl
+      kubernetes-helm
+      fluxcd
+      istioctl
+
+      azure-cli
+      # terraform
+      
+      jsonnet
+      jq
+      yq
     ];
+  };
+
+  programs.foot = {
+    enable = true;
+    settings = {
+      main = {
+        shell = "${pkgs.powershell}/bin/pwsh";
+      };
+    };
   };
 
   wayland.windowManager.sway = {
