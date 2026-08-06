@@ -20,6 +20,7 @@
       networkmanagerapplet
       networkmanager_dmenu
       blueman
+      playerctl
       p7zip
     ];
   };
