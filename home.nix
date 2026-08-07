@@ -16,7 +16,7 @@
       slurp
       wl-clipboard
       copyq
-      (lib.optional config.laptop pkgs.brightnessctl)
+      (lib.optional config.networking.hostName == "hp-laptop" pkgs.brightnessctl)
 
       # files
       thunar
@@ -205,7 +205,7 @@
           "XF86AudioLowerVolume" = "exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-";
           "XF86AudioMute" = "exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
           "XF86AudioPlay" = "exec playerctl play-pause";
-        } // (lib.optionalAttrs config.laptop {
+        } // (lib.optionalAttrs config.networking.hostName == "hp-laptop" {
           "XF86MonBrightnessUp" = "exec brightnessctl s +10%";
           "XF86MonBrightnessDown" = "exec brightnessctl s 10%-";
         });

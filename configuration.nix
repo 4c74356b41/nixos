@@ -1,10 +1,5 @@
 { config, lib, pkgs, ... }: 
 {
-  options.laptop = lib.mkOption {
-    type = lib.types.bool;
-    default = config.networking.hostName == "laptop";
-  };
-
   imports = [];
 
   time.timeZone = "Europe/Minsk";
@@ -57,7 +52,7 @@
       enable = true;
     };
     power-profiles-daemon = {
-      enable = config.laptop;
+      enable = config.networking.hostName == "hp-laptop";
     };
     resolved = {
       enable = true;

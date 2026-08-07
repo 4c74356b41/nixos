@@ -162,7 +162,7 @@
           "sway/language"
           "network"
           "bluetooth"
-        ] ++ (lib.optional config.laptop "battery");
+        ] ++ (lib.optional config.networking.hostName == "hp-laptop" "battery");
 
         clock = {
           format = "{:%H:%M}";
@@ -201,7 +201,7 @@
           on-click-right = "${pkgs.blueman}/bin/blueman-manager";
         };
 
-        (lib.optionalAttrs config.laptop {
+        (lib.optionalAttrs config.networking.hostName == "hp-laptop" {
           battery = {
             interval = 10;
             format = "{capacity}%";
