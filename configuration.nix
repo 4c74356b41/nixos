@@ -1,8 +1,11 @@
 { config, lib, pkgs, ... }: 
 {
-  imports = [
-    ./hardware-configuration.nix
-  ];
+  options.laptop = lib.mkOption {
+    type = lib.types.bool;
+    default = config.networking.hostName == "laptop";
+  };
+
+  imports = [];
 
   time.timeZone = "Europe/Minsk";
   boot = {
@@ -52,6 +55,9 @@
     };
     blueman = {
       enable = true;
+    };
+    power-profiles-daemon = {
+      enable = config.laptop;
     };
     resolved = {
       enable = true;

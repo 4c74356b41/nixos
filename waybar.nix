@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, ... }: 
 
 {
   programs.waybar = {
@@ -105,6 +105,20 @@
         background-color: #f9e2af;
       }
 
+      #battery {
+        color: green;
+      }
+      #battery.warning, #battery.critical {
+        color: red;
+      }
+      #battery.charging {
+        animation: blink 1s step-end infinite;
+      }
+      @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+      }
+
       #network {
         border-radius: 4px;
         margin: 6px 3px;
@@ -148,8 +162,8 @@
           "sway/language"
           "network"
           "bluetooth"
-        ];
-        
+        ] ++ (lib.optional config.laptop "battery");
+
         clock = {
           format = "{:%H:%M}";
           format-alt = "{:%a, %d.%m.%Y}";
@@ -186,6 +200,18 @@
           on-click = "${pkgs.blueman}/bin/blueman-manager";
           on-click-right = "${pkgs.blueman}/bin/blueman-manager";
         };
+
+        (lib.optionalAttrs config.laptop {
+          battery = {
+            interval = 10;
+            format = "{capacity}%";
+            format-charging = "{capacity}%";
+            format-full = "{capacity}%";
+            states = {
+              warning = 30;
+              critical = 30;
+            };
+          };
       };
     };
   };

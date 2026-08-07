@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }: 
 {
   imports = [
     ./waybar.nix
@@ -16,6 +16,7 @@
       slurp
       wl-clipboard
       copyq
+      (lib.optional config.laptop pkgs.brightnessctl)
 
       # files
       thunar
@@ -107,6 +108,11 @@
           scroll_method = "none";
           middle_emulation = "disabled";
         };
+        "type:touchpad" = {
+          tap = "enabled";
+          natural_scroll = "enabled";
+          accel_profile = "adaptive";
+        };
       };
 
       workspaceOutputAssign = [
@@ -152,10 +158,6 @@
           "${mod}+Shift+F10" = "exec systemctl suspend";
           "Alt+F4" = "kill";
           "${mod}+Shift+c" = "reload";
-          "XF86AudioRaiseVolume" = "exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+";
-          "XF86AudioLowerVolume" = "exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-";
-          "XF86AudioMute" = "exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
-          "XF86AudioPlay" = "exec playerctl play-pause";
           "${mod}+Tab" = "workspace next";
           "${mod}+v" = "exec copyq show";
           "${mod}+d" = "exec ${menuCommand}";
@@ -198,7 +200,14 @@
           "${mod}+Shift+minus" = "move scratchpad";
           "${mod}+minus" = "scratchpad show";
           "${mod}+r" = "mode resize";
-        };
+          "XF86AudioRaiseVolume" = "exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+";
+          "XF86AudioLowerVolume" = "exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-";
+          "XF86AudioMute" = "exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+          "XF86AudioPlay" = "exec playerctl play-pause";
+        } // (lib.optionalAttrs config.laptop {
+          "XF86MonBrightnessUp" = "exec brightnessctl s +10%";
+          "XF86MonBrightnessDown" = "exec brightnessctl s 10%-";
+        });
 
       modes = {
         resize = {
