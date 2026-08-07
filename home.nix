@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }: 
+{ config, lib, pkgs, isLaptop, ... }: 
 {
   imports = [
     ./waybar.nix
@@ -16,7 +16,6 @@
       slurp
       wl-clipboard
       copyq
-      (lib.optional config.networking.hostName == "hp-laptop" pkgs.brightnessctl)
 
       # files
       thunar
@@ -50,7 +49,7 @@
       jsonnet
       jq
       yq
-    ];
+    ] ++ (lib.optional isLaptop pkgs.brightnessctl);
   };
 
   programs.foot = {
@@ -205,7 +204,7 @@
           "XF86AudioLowerVolume" = "exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-";
           "XF86AudioMute" = "exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
           "XF86AudioPlay" = "exec playerctl play-pause";
-        } // (lib.optionalAttrs config.networking.hostName == "hp-laptop" {
+        } // (lib.optionalAttrs isLaptop {
           "XF86MonBrightnessUp" = "exec brightnessctl s +10%";
           "XF86MonBrightnessDown" = "exec brightnessctl s 10%-";
         });

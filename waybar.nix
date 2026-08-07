@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }: 
+{ config, lib, pkgs, isLaptop, ... }: 
 
 {
   programs.waybar = {
@@ -74,7 +74,7 @@
         padding: 6px 12px;
         color: #181825;
         font-family: JetBrainsMono Nerd Font;
-        background-color: #cba6f7;  /* Distinct purple for clock */
+        background-color: #cba6f7;
       }
 
       #bluetooth {
@@ -115,8 +115,9 @@
         animation: blink 1s step-end infinite;
       }
       @keyframes blink {
-        0%, 100% { opacity: 1; }
+        0% { opacity: 1; }
         50% { opacity: 0; }
+        100% { opacity: 1; }
       }
 
       #network {
@@ -162,7 +163,7 @@
           "sway/language"
           "network"
           "bluetooth"
-        ] ++ (lib.optional config.networking.hostName == "hp-laptop" "battery");
+        ] ++ (lib.optional isLaptop "battery");
 
         clock = {
           format = "{:%H:%M}";
@@ -200,8 +201,7 @@
           on-click = "${pkgs.blueman}/bin/blueman-manager";
           on-click-right = "${pkgs.blueman}/bin/blueman-manager";
         };
-
-        (lib.optionalAttrs config.networking.hostName == "hp-laptop" {
+      } // (lib.optionalAttrs isLaptop {
           battery = {
             interval = 10;
             format = "{capacity}%";
@@ -212,7 +212,7 @@
               critical = 30;
             };
           };
-      };
+      });
     };
   };
 }

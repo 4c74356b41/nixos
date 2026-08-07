@@ -52,7 +52,7 @@
       enable = true;
     };
     power-profiles-daemon = {
-      enable = config.networking.hostName == "hp-laptop";
+      enable = config.networking.hostName == "laptop";
     };
     resolved = {
       enable = true;

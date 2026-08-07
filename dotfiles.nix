@@ -443,6 +443,10 @@
       $GitPromptSettings.DefaultPromptAbbreviateGitDirectory = $true
       $PSDefaultParameterValues["Out-Default:OutVariable"] = "lw"
       Set-PSReadLineOption -PredictionViewStyle ListView -PredictionSource History
+      Set-PSReadLineKeyHandler -Chord Ctrl+LeftArrow  -Function BackwardWord
+      Set-PSReadLineKeyHandler -Chord Ctrl+RightArrow -Function NextWord
+      Set-PSReadLineKeyHandler -Chord Alt+LeftArrow  -Function BackwardWord
+      Set-PSReadLineKeyHandler -Chord Alt+RightArrow -Function NextWord
       New-BashStyleAlias gtp 'git commit -am typo; git push'
       New-BashStyleAlias gtc 'git commit -am @args'
       New-BashStyleAlias gpf 'git pull --ff-only @args'

@@ -17,6 +17,7 @@
             networking.hostName = "laptop";
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = { isLaptop = true; };
             home-manager.users.sway = import ./home.nix;
           }
         ];
@@ -32,6 +33,7 @@
             networking.hostName = "desktop";
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = { isLaptop = true; };
             home-manager.users.sway = import ./home.nix;
           }
         ];
