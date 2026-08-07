@@ -21,7 +21,7 @@
       # files
       thunar
       p7zip
-      
+
       # wifi
       networkmanagerapplet
       networkmanager_dmenu
@@ -37,7 +37,8 @@
       # tools
       git
       gh
-      
+      git-credential-manager
+
       kubectl
       kubernetes-helm
       fluxcd
@@ -45,7 +46,7 @@
 
       azure-cli
       # terraform
-      
+
       jsonnet
       jq
       yq
