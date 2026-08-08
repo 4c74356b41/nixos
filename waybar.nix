@@ -106,14 +106,22 @@
       }
 
       #battery {
-        color: green;
+        background-color: #a6e3a1;   /* light green – matches Catppuccin */
+        color: #181825;              /* dark text for contrast */
+        border-radius: 4px;
+        margin: 6px 3px;
+        padding: 6px 12px;
       }
+      
       #battery.warning, #battery.critical {
-        color: red;
+        background-color: #f38ba8;   /* red for low battery */
+        color: #181825;
       }
+      
       #battery.charging {
         animation: blink 1s step-end infinite;
       }
+      
       @keyframes blink {
         0% { opacity: 1; }
         50% { opacity: 0; }
