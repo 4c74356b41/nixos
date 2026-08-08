@@ -69,7 +69,7 @@
           autoSetupRemote = true
 
       [credential]
-          helper = cache
+          helper = ${pkgs.git-credential-manager}/bin/git-credential-manager
     '';
 
     ".config/git/ignore".text = ''
