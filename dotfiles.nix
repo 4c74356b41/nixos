@@ -2,6 +2,38 @@
 
 {
   home.file = {
+    "networkmanager-dmenu/config.ini".text = ''
+      [dmenu]
+      dmenu_command = rofi
+      active_chars = ==
+      highlight = True
+      highlight_fg =
+      highlight_bg =
+      highlight_bold = True
+      compact = False
+      pinentry =
+      wifi_icons = 󰤯󰤟󰤢󰤥󰤨
+      format = {name:<{max_len_name}s}  {sec:<{max_len_sec}s} {icon:>4}
+      list_saved = False
+      prompt = Networks
+
+      [dmenu_passphrase]
+      obscure = False
+      obscure_color = #222222
+
+      [pinentry]
+      description = Get network password
+      prompt = Password:
+
+      [editor]
+      terminal = foot
+      gui_if_available = True
+      gui = nm-connection-editor
+
+      [nmdm]
+      rescan_delay = 5
+    '';
+
     ".config/onedrive/config".text = ''
       sync_dir = "/home/sway/dl"
       skip_dir = "tb"
@@ -10,12 +42,12 @@
       skip_dir = "Attachments"
       skip_dir = "ArrowBackup"
     '';
-    
+
     ".config/lock/config".text = ''
       show-keyboard-layout
       ignore-empty-password
       indicator-idle-visible
-  
+
       color=A3A3A3
       inside-color=000000
       ring-color=0000ff
@@ -32,17 +64,17 @@
       [pull]
           ff = only
       [core]
-      
+
       [push]
           autoSetupRemote = true
-      
+
       [credential]
           helper = cache
     '';
 
     ".config/git/ignore".text = ''
       .claude
-      
+
       # OS Generated Files
       .DS_Store
       .DS_Store?
@@ -52,13 +84,13 @@
       ehthumbs.db
       Thumbs.db
       desktop.ini
-      
+
       # OS Swap/Backup
       *~
       *.swp
       *.swo
       *~
-      
+
       # IDE/Editor
       .vscode/settings.json
       .vscode/tasks.json
@@ -69,7 +101,7 @@
       .project
       .settings/
       .classpath
-      
+
       # Logs/Debug
       *.log
       npm-debug.log*
@@ -77,7 +109,7 @@
       yarn-error.log*
       lerna-debug.log*
       .pnpm-debug.log*
-      
+
       # Dependencies
       node_modules/
       .pnp
@@ -89,13 +121,13 @@
       .env.test.local
       .env.production.local
       Dockerfile.*.env
-      
+
       # Azure DevOps / Bicep
       *.bicepparam*
       azresourcegroup.json
       aztfplan.json
       core.bicepparam.json
-      
+
       # Terraform
       *.tfstate
       *.tfstate.*
@@ -112,7 +144,7 @@
       crash.log
       .terraform.tfstate*
       *.terraform.tfstate.backup
-      
+
       # Python
       __pycache__/
       *.py[cod]
@@ -137,7 +169,7 @@
       MANIFEST
       pip-log.txt
       pip-delete-this-directory.txt
-      
+
       # Python Virtual Env
       venv/
       env/
@@ -145,12 +177,12 @@
       env.bak/
       venv.bak/
       .venv/
-      
+
       # Jupyter
       .ipynb_checkpoints/
       .ipynb_checkpoints
       *.ipynb_checkpoints
-      
+
       # Pytest
       .pytest_cache/
       .coverage
@@ -161,7 +193,7 @@
       *.cover
       *.pytest_cache/
       hypothesis/
-      
+
       # Kubernetes/Helm
       *.kubeconfig
       .kube/
@@ -169,21 +201,21 @@
       values-local.yaml
       Chart.lock
       /charts
-      
+
       # Docker
       Dockerfile*
       docker-compose.override.yml
       docker-compose.*.yml
-      
+
       # PowerShell
       *.ps1~ 
       pwsh_history
       PSReadLine/
-      
+
       # CI/CD
       !.github/workflows/
       !.azure-pipelines/
-      
+
       # Binaries/Artifacts
       *.exe
       *.exe~
@@ -191,7 +223,7 @@
       *.dylib
       *.so
       *.dylib*
-      
+
       # Temp/Backup
       *.bak
       *.backup
@@ -200,28 +232,28 @@
       *.swp
       *.swo
       *~
-      
+
       # Testing
       coverage/
       .nyc_output
       test-results/
       test-output/
-      
+
       # Azure CLI
       .azcopy/
       az-session.json
-      
+
       # Ansible
       .ansible.cfg
       .ansible-lint
       .ansible-lint-cache
-      
+
       # Bicep
       bicep.*.json
-      
+
       # ARM Templates
       azuredeploy.parameters.json
-      
+
       # Miscellaneous
       *.DS_Store
       .DS_Store
@@ -231,7 +263,7 @@
       ehthumbs.db
       Thumbs.db
       desktop.ini
-      
+
       # system
       .bash_history
       .bash_logout
@@ -258,7 +290,7 @@
       .sudo_as_admin_successful
       .var/
       .vscode-oss/
-      
+
       # personal
       _git/
       od/

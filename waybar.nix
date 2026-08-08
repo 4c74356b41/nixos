@@ -4,7 +4,7 @@
   programs.waybar = {
     enable = true;
     systemd.enable = true;
-    
+
     style = ''
       * {
         border: none;
@@ -25,7 +25,7 @@
       }
 
       #language {
-        border-radius: 4px;
+        border-radius: 0;
         margin: 6px 3px;
         padding: 6px 12px;
         color: #181825;
@@ -47,7 +47,7 @@
         box-shadow: inset 0 -3px transparent;
         padding: 6px 18px;
         margin: 6px 3px;
-        border-radius: 4px;
+        border-radius: 0;
         background-color: #1e1e2e;
         color: #cdd6f4;
       }
@@ -69,7 +69,7 @@
       }
 
       #clock {
-        border-radius: 4px;
+        border-radius: 0;
         margin: 6px 3px;
         padding: 6px 12px;
         color: #181825;
@@ -78,7 +78,7 @@
       }
 
       #bluetooth {
-        border-radius: 4px;
+        border-radius: 0;
         margin: 6px 3px;
         padding: 6px 12px;
         color: #181825;
@@ -106,22 +106,22 @@
       }
 
       #battery {
-        background-color: #a6e3a1;   /* light green – matches Catppuccin */
-        color: #181825;              /* dark text for contrast */
-        border-radius: 4px;
+        background-color: #b9f27c;
+        color: #181825;
+        border-radius: 0;
         margin: 6px 3px;
         padding: 6px 12px;
       }
-      
+
       #battery.warning, #battery.critical {
-        background-color: #f38ba8;   /* red for low battery */
+        background-color: #f38ba8;
         color: #181825;
       }
-      
+
       #battery.charging {
         animation: blink 1s step-end infinite;
       }
-      
+
       @keyframes blink {
         0% { opacity: 1; }
         50% { opacity: 0; }
@@ -129,7 +129,7 @@
       }
 
       #network {
-        border-radius: 4px;
+        border-radius: 0;
         margin: 6px 3px;
         padding: 6px 12px;
         color: #181825;
@@ -165,7 +165,7 @@
         layer = "top";
         position = "top";
         height = 30;
-        
+
         modules-center = [
           "clock"
           "sway/language"
@@ -179,7 +179,7 @@
           tooltip = true;
           tooltip-format = "<big>{:%Y %B}</big>\n<tt>{calendar}</tt>";
         };
-        
+
         "sway/language" = {
           format = "{}";
           format-us = "US";
@@ -195,7 +195,7 @@
           format-disconnected = "off";
           format-disabled = "off";
           tooltip = false;
-          
+
           on-click = "${pkgs.networkmanager_dmenu}/bin/networkmanager_dmenu";
           on-click-right = "${pkgs.networkmanagerapplet}/bin/nm-connection-editor";
         };
@@ -205,9 +205,9 @@
           format-on = "bt";
           format = "bt";
           tooltip = false;
-          
-          on-click = "${pkgs.blueman}/bin/blueman-manager";
-          on-click-right = "${pkgs.blueman}/bin/blueman-manager";
+
+          on-click = "${pkgs.rofi-bluetooth}/bin/rofi-bluetooth";
+          on-click-right = "bluetoothctl power $(bluetoothctl show | grep -q 'Powered: yes' && echo off || echo on)";
         };
       } // (lib.optionalAttrs isLaptop {
           battery = {

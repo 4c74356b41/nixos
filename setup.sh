@@ -1,4 +1,5 @@
-sudo nixos-rebuild switch --flake git+https://github.com/4c74356b41/nixos.git --no-write-lock-file --refresh
+# sudo nixos-rebuild switch --flake ~/nixos#laptop
+# sudo nixos-rebuild switch --flake ~/nixos#desktop
 
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 flatpak install flathub com.microsoft.Edge

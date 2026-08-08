@@ -26,7 +26,7 @@
       networkmanager_dmenu
 
       # bluetooth
-      blueman
+      rofi-bluetooth
       playerctl
 
       # terminal\shell
