@@ -48,9 +48,6 @@
       alsa.enable = true;
       pulse.enable = true;
     };
-    blueman = {
-      enable = true;
-    };
     power-profiles-daemon = {
       enable = config.networking.hostName == "laptop";
     };

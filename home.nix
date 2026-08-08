@@ -92,7 +92,6 @@
         { command = "flatpak run com.brave.Browser";}
 
         { command = "copyq --start-server"; }
-        { command = "blueman-applet"; }
       ];
 
       input = {
