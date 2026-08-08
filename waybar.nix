@@ -106,26 +106,29 @@
       }
 
       #battery {
-        background-color: #b9f27c;
-        color: #181825;
         border-radius: 0;
         margin: 6px 3px;
         padding: 6px 12px;
-      }
-
-      #battery.warning, #battery.critical {
-        background-color: #f38ba8;
         color: #181825;
+        background-color: #b9f27c;
+      }
+      #battery.warning {
+        background-color: #f9e2af;
+      }
+      #battery.critical {
+        background-color: #f38ba8;
       }
 
-      #battery.charging {
-        animation: blink 1s step-end infinite;
+      /* Tooltip styling */
+      tooltip {
+        border-radius: 8px;
+        padding: 15px;
+        background-color: #131822;
       }
 
-      @keyframes blink {
-        0% { opacity: 1; }
-        50% { opacity: 0; }
-        100% { opacity: 1; }
+      tooltip label {
+        padding: 5px;
+        background-color: #131822;
       }
 
       #network {
@@ -211,13 +214,12 @@
         };
       } // (lib.optionalAttrs isLaptop {
           battery = {
-            interval = 10;
-            format = "{capacity}%";
-            format-charging = "{capacity}%";
-            format-full = "{capacity}%";
+            interval = 30;
+            format-charging = "▲▲ {capacity}%";
+            format-discharging = "{capacity}% ▼▼";
             states = {
               warning = 30;
-              critical = 30;
+              critical = 13;
             };
           };
       });

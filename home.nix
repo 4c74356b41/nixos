@@ -70,7 +70,16 @@
 
       menu = "rofi -show combi -combi-modes drun,run -modes combi";
 
-      output = {
+      output = (if isLaptop then {
+        "eDP-1" = {
+          mode = "1920x1080@60.056Hz";
+          position = "760,1440";
+        };
+        "DP-1" = {
+          mode = "3440x1440@99.982Hz";
+          position = "0,0";
+        };
+      } else {}) // {
         "*" = {
           bg = "#000000 solid_color";
         };
@@ -111,11 +120,21 @@
           tap = "enabled";
           natural_scroll = "enabled";
           accel_profile = "adaptive";
+          left_handed = "enabled";
         };
       };
 
-      workspaceOutputAssign = [
-        { workspace = "1"; output = "HDMI-A-1"; }
+      workspaceOutputAssign = if isLaptop then [
+        { workspace = "1"; output = "eDP-1"; }
+        { workspace = "2"; output = "eDP-1"; }
+        { workspace = "3"; output = "eDP-1"; }
+        { workspace = "4"; output = "eDP-1"; }
+        { workspace = "5"; output = "DP-1"; }
+        { workspace = "6"; output = "DP-1"; }
+        { workspace = "7"; output = "DP-1"; }
+        { workspace = "8"; output = "DP-1"; }
+      ] else [
+1       { workspace = "1"; output = "HDMI-A-1"; }
         { workspace = "2"; output = "HDMI-A-1"; }
         { workspace = "3"; output = "HDMI-A-1"; }
         { workspace = "4"; output = "HDMI-A-1"; }
@@ -141,9 +160,6 @@
           { app_id = "com.github.hluk.copyq"; }
         ];
       };
-
-      # FLOATING MODIFIER
-      # floatingModifier = "Mod4";
 
       bindkeysToCode = true;
       keybindings =

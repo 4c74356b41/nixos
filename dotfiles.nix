@@ -297,9 +297,13 @@
     '';
 
     ".config/powershell/Microsoft.PowerShell_profile.ps1".text = ''
-      Register-PSRepository -Default
+      Register-PSRepository -Default -ErrorAction SilentlyContinue
       Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted
-      install-module posh-git,az,microsoft.graph
+      "posh-git","az","microsoft.graph" | Foreach-Object {
+        if ( -not ( Get-Module -ListAvailable $PSItem ) ) {
+          Install-Module $PSItem
+        }
+      }
 
       function debug-me() { Set-PSBreakpoint -Variable StackTrace -Mode Write }
       function copy-me( $name ) { New-Variable -Name $name -Value $lw.clone() -Scope Global }
