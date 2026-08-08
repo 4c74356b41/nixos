@@ -265,6 +265,7 @@
     '';
 
     ".config/powershell/Microsoft.PowerShell_profile.ps1".text = ''
+      Register-PSRepository -Default
       Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted
       install-module posh-git,az,microsoft.graph
 
