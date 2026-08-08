@@ -220,5 +220,13 @@
         };
       };
     };
+    extraConfig = ''
+      bindgesture {
+        swipe:4:left exec grim -g "$(slurp)" - | wl-copy
+        swipe:4:right exec grim -g "$(slurp)" ~/downloads/ss-$(date +%s).png
+        swipe:4:up exec systemctl reboot
+        swipe:4:down exec systemctl poweroff
+      }
+    '';
   };
 }
