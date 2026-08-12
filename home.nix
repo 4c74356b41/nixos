@@ -134,7 +134,7 @@
         { workspace = "7"; output = "DP-1"; }
         { workspace = "8"; output = "DP-1"; }
       ] else [
-1       { workspace = "1"; output = "HDMI-A-1"; }
+        { workspace = "1"; output = "HDMI-A-1"; }
         { workspace = "2"; output = "HDMI-A-1"; }
         { workspace = "3"; output = "HDMI-A-1"; }
         { workspace = "4"; output = "HDMI-A-1"; }

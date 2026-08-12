@@ -33,7 +33,7 @@
             networking.hostName = "desktop";
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = { isLaptop = true; };
+            home-manager.extraSpecialArgs = { isLaptop = false; };
             home-manager.users.sway = import ./home.nix;
           }
         ];
