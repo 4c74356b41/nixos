@@ -8,6 +8,12 @@
     loader.efi.canTouchEfiVariables = true;
   };
 
+  nix.gc = {
+    automatic = true;
+    dates = "daily";
+    options = "--delete-older-than 5d";
+  };
+
   networking = {
     networkmanager = {
       enable = true;

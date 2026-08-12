@@ -2,7 +2,7 @@
 
 {
   home.file = {
-    "networkmanager-dmenu/config.ini".text = ''
+    ".config/networkmanager-dmenu/config.ini".text = ''
       [dmenu]
       dmenu_command = rofi
       active_chars = ==
@@ -298,7 +298,7 @@
 
     ".config/powershell/Microsoft.PowerShell_profile.ps1".text = ''
       Register-PSRepository -Default -ErrorAction SilentlyContinue
-      Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted
+      Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted -ErrorAction SilentlyContinue
       "posh-git","az","microsoft.graph" | Foreach-Object {
         if ( -not ( Get-Module -ListAvailable $PSItem ) ) {
           Install-Module $PSItem
