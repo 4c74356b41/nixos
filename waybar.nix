@@ -177,10 +177,8 @@
         ] ++ (lib.optional isLaptop "battery");
 
         clock = {
-          format = "{:%H:%M}";
-          format-alt = "{:%a, %d.%m.%Y}";
-          tooltip = true;
-          tooltip-format = "<big>{:%Y %B}</big>\n<tt>{calendar}</tt>";
+          format = "[{:%a] %H:%M [%d %b}]";
+          tooltip = false;
         };
 
         "sway/language" = {

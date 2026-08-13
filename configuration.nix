@@ -105,5 +105,9 @@
     ];
   };
 
+  # environment.systemPackages = with pkgs; [
+  #   modprobed-db
+  # ];
+
   system.stateVersion = "26.05";
 }

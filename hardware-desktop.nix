@@ -1,4 +1,7 @@
 { config, lib, pkgs, modulesPath, ... }:
+let
+  modprobedDb = /home/sway/.config/modprobed.db;
+in
 {
   imports = [
     ( modulesPath + "/installer/scan/not-detected.nix" )
@@ -15,8 +18,8 @@
         PROGRAM ${pkgs.inetutils}/bin/logger -t mdadm-raid-alert
       '';
     };
-    kernelModules = [ "kvm-amd" ];
     extraModulePackages = [ ];
+    kernelModules = [ "kvm-amd" ];
   };
 
   fileSystems."/" = {
