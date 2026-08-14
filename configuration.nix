@@ -8,12 +8,15 @@
     loader.efi.canTouchEfiVariables = true;
   };
 
-  nix.gc = {
-    automatic = true;
-    dates = [
-      "09:00"
-    ];
-    options = "--delete-older-than 5d";
+  nix = {
+    gc = {
+      automatic = true;
+      dates = [
+        "09:00"
+      ];
+      options = "--delete-older-than 5d";
+    };
+    settings.experimental-features = [ "nix-command" "flakes" ];
   };
 
   networking = {
@@ -60,6 +63,12 @@
       enable = config.networking.hostName == "laptop";
     };
     resolved = {
+      enable = true;
+    };
+    gvfs = {
+      enable = true;
+    };
+    dbus = {
       enable = true;
     };
   };

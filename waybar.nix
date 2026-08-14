@@ -170,21 +170,22 @@
         height = 30;
 
         modules-center = [
-          "clock"
           "sway/language"
+          "clock"
           "network"
           "bluetooth"
         ] ++ (lib.optional isLaptop "battery");
 
-        clock = {
-          format = "[{:%a] %H:%M [%d %b}]";
-          tooltip = false;
-        };
 
         "sway/language" = {
           format = "{}";
           format-us = "US";
           format-ru = "RU";
+          tooltip = false;
+        };
+
+        clock = {
+          format = "[{:%a] %H:%M [%d %b}]";
           tooltip = false;
         };
 

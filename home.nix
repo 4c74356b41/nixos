@@ -18,8 +18,12 @@
       copyq
 
       # files
-      thunar
-      p7zip
+      (xfce.thunar.override { 
+        thunarPlugins = [ xfce.thunar-archive-plugin ]; 
+      })
+      xfconf
+      file-roller
+      xarchiver
 
       # wifi
       networkmanagerapplet
@@ -29,11 +33,8 @@
       rofi-bluetooth
       playerctl
 
-      # terminal\shell
-      foot
+      # core
       powershell
-
-      # tools
       git
       gh
       git-credential-manager
@@ -52,12 +53,11 @@
     ] ++ (lib.optional isLaptop pkgs.brightnessctl);
   };
 
-  programs.foot = {
-    enable = true;
-    settings = {
-      main = {
-        shell = "${pkgs.powershell}/bin/pwsh";
-      };
+
+  programs = {
+    foot = {
+      settings.main.shell = "${pkgs.powershell}/bin/pwsh";
+      enable = true;
     };
   };
 
