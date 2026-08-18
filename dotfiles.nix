@@ -522,6 +522,19 @@
       # Clear-Host
 
     '';
+
+    ".config/google-chrome/NativeMessagingHosts/org.keepassxc.keepassxc_browser.json".text = ''
+    {
+      "allowed_origins": [
+          "chrome-extension://pdffhmdngciaglkoonimfcmckehcpafo/",
+          "chrome-extension://oboonakemofpalcgghocfoadofidjkkk/"
+      ],
+      "description": "KeePassXC integration with native messaging support",
+      "name": "org.keepassxc.keepassxc_browser",
+      "path": "/etc/profiles/per-user/sway/bin/keepassxc-proxy",
+      "type": "stdio"
+  }
+    '';
   };
 
 

@@ -1,8 +1,9 @@
-{ config, lib, pkgs, isLaptop, ... }: 
+{ config, lib, pkgs, isLaptop, helium-flake, ... }: 
 {
   imports = [
     ./waybar.nix
     ./dotfiles.nix
+    helium-flake.homeModules.default
   ];
 
   home = {
@@ -18,12 +19,12 @@
       copyq
 
       # files
-      (xfce.thunar.override { 
-        thunarPlugins = [ xfce.thunar-archive-plugin ]; 
+      (pkgs.thunar.override { 
+        thunarPlugins = [ pkgs.thunar-archive-plugin ]; 
       })
       xfconf
       file-roller
-      xarchiver
+      # xarchiver
 
       # wifi
       networkmanagerapplet
@@ -33,7 +34,7 @@
       rofi-bluetooth
       playerctl
 
-      # core
+      # tools
       powershell
       git
       gh
@@ -58,6 +59,53 @@
     foot = {
       settings.main.shell = "${pkgs.powershell}/bin/pwsh";
       enable = true;
+    };
+    helium = {
+      enable = true;
+      policies = {
+        "BrowserSignin" = 0;
+        "PasswordManagerEnabled" = false;
+        "SyncDisabled" = true;
+        "HomepageLocation" = "https://youtube.com";
+        "DefaultSearchProviderEnabled" = true;
+        "DefaultSearchProviderSearchURL" = "https://www.perplexity.ai/search/?q={searchTerms}";
+        "ExtensionInstallForcelist" = [
+          "cjpalhdlnbpafiamejdnhcphjbkeiagm" # ublock origin
+          "oboonakemofpalcgghocfoadofidjkkk" # keepassxc
+        ];
+      };
+      flags = [
+        "--new-window"
+        "--ozone-platform=x11"   # optional, if X11 works better
+        "--start-maximized"
+      ];
+    };
+    keepassxc = {
+      enable = true;
+      settings = {
+        Browser = {
+          Enabled = true;
+          UpdateBinaryPath = false;
+
+          UseCustomBrowser = true;
+          CustomBrowserType = 1;
+          CustomBrowserLocation = "${config.home.homeDirectory}/.config/google-chrome/NativeMessagingHosts";
+        };
+        GUI = {
+          AdvancedSettings = true;
+          ApplicationTheme = "dark";
+          CompactMode = true;
+          HidePasswords = true;
+        };
+        Security = {
+          AutoLockAfterMinimized = true;
+          AutoLockTimeout = 15;
+          EnableCopyOnDoubleClick = true;
+        };
+        FdoSecrets = {
+          enabled = true;
+        };
+      };
     };
   };
 
@@ -150,7 +198,7 @@
         "3" = [ { app_id = "org.keepassxc.KeePassXC"; } { app_id = "org.mozilla.thunderbird_esr"; } ];
         "4" = [ { app_id = "org.ksnip.ksnip"; } ];
         "5" = [ { app_id = "code"; } ];
-        "6" = [ { app_id = "brave-browser"; } ];
+        "6" = [ { app_id = "brave-browser"; } { app_id = "Helium"; } ];
         "7" = [ { app_id = "microsoft-edge"; } ];
         "8" = [ { app_id = "org.gnome.Boxes"; } ];
       };
