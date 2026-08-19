@@ -120,7 +120,7 @@
     # ];
     etc."chromium/policies/managed/helium-nixos.json" = {
       source = pkgs.writeText "helium-nixos.json" ''
-        {"BrowserSignin":0,"DefaultSearchProviderEnabled":true,"DefaultSearchProviderSearchURL":"https://www.perplexity.ai/search/?q={searchTerms}","ExtensionInstallForcelist":["cjpalhdlnbpafiamejdnhcphjbkeiagm","oboonakemofpalcgghocfoadofidjkkk"],"HomepageLocation":"https://youtube.com","PasswordManagerEnabled":false,"SyncDisabled":true}
+        {"BrowserSignin":0,"DefaultSearchProviderEnabled":true,"DefaultSearchProviderSearchURL":"https://www.perplexity.ai/search/?q={searchTerms}","ExtensionInstallForcelist":["oboonakemofpalcgghocfoadofidjkkk"],"HomepageLocation":"https://youtube.com","PasswordManagerEnabled":false,"SyncDisabled":true}
       '';
     };
   };

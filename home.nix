@@ -70,7 +70,6 @@
         "DefaultSearchProviderEnabled" = true;
         "DefaultSearchProviderSearchURL" = "https://www.perplexity.ai/search/?q={searchTerms}";
         "ExtensionInstallForcelist" = [
-          "cjpalhdlnbpafiamejdnhcphjbkeiagm" # ublock origin
           "oboonakemofpalcgghocfoadofidjkkk" # keepassxc
         ];
       };
