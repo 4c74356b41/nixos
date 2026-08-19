@@ -71,6 +71,7 @@
         "DefaultSearchProviderSearchURL" = "https://www.perplexity.ai/search/?q={searchTerms}";
         "ExtensionInstallForcelist" = [
           "oboonakemofpalcgghocfoadofidjkkk" # keepassxc
+          "hipncndjamdcmphkgngojegjblibadbe" # freeplanetvpn
         ];
       };
       flags = [
@@ -141,7 +142,7 @@
         { command = "flatpak run com.visualstudio.code"; }
         { command = "flatpak run org.telegram.desktop"; }
         { command = "flatpak run com.rtosta.zapzap"; }
-        { command = "flatpak run org.keepassxc.KeePassXC"; }
+        { command = "keepassxc"; }
         { command = "flatpak run org.mozilla.thunderbird_esr"; }
         { command = "flatpak run org.ksnip.ksnip"; }
         { command = "flatpak run com.microsoft.Edge"; }
