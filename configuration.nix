@@ -114,9 +114,16 @@
     ];
   };
 
-  # environment.systemPackages = with pkgs; [
-  #   modprobed-db
-  # ];
+  environment = {
+    # .systemPackages = with pkgs; [
+    #   modprobed-db
+    # ];
+    etc."chromium/policies/managed/helium-nixos.json" = {
+      source = pkgs.writeText "helium-nixos.json" ''
+        {"BrowserSignin":0,"DefaultSearchProviderEnabled":true,"DefaultSearchProviderSearchURL":"https://www.perplexity.ai/search/?q={searchTerms}","ExtensionInstallForcelist":["cjpalhdlnbpafiamejdnhcphjbkeiagm","oboonakemofpalcgghocfoadofidjkkk"],"HomepageLocation":"https://youtube.com","PasswordManagerEnabled":false,"SyncDisabled":true}
+      '';
+    };
+  };
 
   system.stateVersion = "26.05";
 }

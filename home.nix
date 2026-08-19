@@ -76,7 +76,7 @@
       };
       flags = [
         "--new-window"
-        "--ozone-platform=x11"   # optional, if X11 works better
+        "--ozone-platform=x11"
         "--start-maximized"
       ];
     };
@@ -146,7 +146,7 @@
         { command = "flatpak run org.mozilla.thunderbird_esr"; }
         { command = "flatpak run org.ksnip.ksnip"; }
         { command = "flatpak run com.microsoft.Edge"; }
-        { command = "flatpak run com.brave.Browser";}
+        { command = "helium";}
 
         { command = "copyq --start-server"; }
       ];
@@ -198,7 +198,7 @@
         "3" = [ { app_id = "org.keepassxc.KeePassXC"; } { app_id = "org.mozilla.thunderbird_esr"; } ];
         "4" = [ { app_id = "org.ksnip.ksnip"; } ];
         "5" = [ { app_id = "code"; } ];
-        "6" = [ { app_id = "brave-browser"; } { app_id = "Helium"; } ];
+        "6" = [ { app_id = "Helium"; } ];
         "7" = [ { app_id = "microsoft-edge"; } ];
         "8" = [ { app_id = "org.gnome.Boxes"; } ];
       };
