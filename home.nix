@@ -67,8 +67,9 @@
         "PasswordManagerEnabled" = false;
         "SyncDisabled" = true;
         "HomepageLocation" = "https://youtube.com";
+        "DownloadDirectory" = "/home/sway/downloads";
         "DefaultSearchProviderEnabled" = true;
-        "DefaultSearchProviderSearchURL" = "https://www.perplexity.ai/search/?q={searchTerms}";
+        "DefaultSearchProviderSearchURL" = "https://www.google.com/search?q={searchTerms}";
         "ExtensionInstallForcelist" = [
           "oboonakemofpalcgghocfoadofidjkkk" # keepassxc
           "hipncndjamdcmphkgngojegjblibadbe" # freeplanetvpn
@@ -198,7 +199,7 @@
         "3" = [ { app_id = "org.keepassxc.KeePassXC"; } { app_id = "org.mozilla.thunderbird_esr"; } ];
         "4" = [ { app_id = "org.ksnip.ksnip"; } ];
         "5" = [ { app_id = "code"; } ];
-        "6" = [ { app_id = "Helium"; } ];
+        "6" = [ { class = "Helium"; } ];
         "7" = [ { app_id = "microsoft-edge"; } ];
         "8" = [ { app_id = "org.gnome.Boxes"; } ];
       };
