@@ -533,11 +533,18 @@
       "name": "org.keepassxc.keepassxc_browser",
       "path": "/etc/profiles/per-user/sway/bin/keepassxc-proxy",
       "type": "stdio"
-  }
+    }
+    '';
+
+    ".config/Thunar/accels.scm".text = ''
+      ; Map Backspace to open the parent directory
+      (gtk_accel_path "<Actions>/ThunarWindow/open-parent" "BackSpace")
+      
+      ; Clear the default Backspace binding (which normally goes 'Back' in history)
+      ; to prevent shortcut conflicts
+      (gtk_accel_path "<Actions>/ThunarWindow/back-alt" "")
     '';
   };
-
-
 
   systemd.user.tmpfiles.rules = [
     "d %h/_git 0755 - - -"

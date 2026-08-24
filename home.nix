@@ -17,6 +17,7 @@
       slurp
       wl-clipboard
       copyq
+      fastfetch
 
       # files
       (pkgs.thunar.override { 
@@ -70,6 +71,7 @@
         "DownloadDirectory" = "/home/sway/downloads";
         "DefaultSearchProviderEnabled" = true;
         "DefaultSearchProviderSearchURL" = "https://www.google.com/search?q={searchTerms}";
+        "RestoreOnStartup" = 1;
         "ExtensionInstallForcelist" = [
           "oboonakemofpalcgghocfoadofidjkkk" # keepassxc
           "hipncndjamdcmphkgngojegjblibadbe" # freeplanetvpn
@@ -128,7 +130,12 @@
           mode = "3440x1440@99.982Hz";
           position = "0,0";
         };
-      } else {}) // {
+      } else {
+        "HDMI-A-1" = {
+          mode = "3440x1440@99.982Hz";
+          position = "0,0";
+        };
+      }) // {
         "*" = {
           bg = "#000000 solid_color";
         };
