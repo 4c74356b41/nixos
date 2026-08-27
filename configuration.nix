@@ -111,6 +111,7 @@
       "wheel"
       "podman"
       "networkmanager"
+      "adbusers"
     ];
   };
 
@@ -120,7 +121,7 @@
     # ];
     etc."chromium/policies/managed/helium-nixos.json" = {
       source = pkgs.writeText "helium-nixos.json" ''
-        {"BrowserSignin":0,"DefaultSearchProviderEnabled":true,"DefaultSearchProviderSearchURL":"https://www.google.com/search?q={searchTerms}","DownloadDirectory":"/home/sway/downloads","ExtensionInstallForcelist":["oboonakemofpalcgghocfoadofidjkkk","hipncndjamdcmphkgngojegjblibadbe"],"HomepageLocation":"https://youtube.com","PasswordManagerEnabled":false,"SyncDisabled":true, "RestoreOnStartup": 1}
+        {"BrowserSignin":0,"DefaultSearchProviderEnabled":true,"DefaultSearchProviderSearchURL":"https://www.google.com/search?q={searchTerms}","DownloadDirectory":"/home/sway/downloads","ExtensionInstallForcelist":["oboonakemofpalcgghocfoadofidjkkk","hipncndjamdcmphkgngojegjblibadbe","ponfpcnoihfmfllpaingbgckeeldkhle"],"HomepageLocation":"https://youtube.com","PasswordManagerEnabled":false,"SyncDisabled":true, "RestoreOnStartup": 1}
       '';
     };
   };

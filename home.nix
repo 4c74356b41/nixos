@@ -25,9 +25,12 @@
       })
       xfconf
       file-roller
-      # xarchiver
+      universal-android-debloater
+      android-tools
 
-      # wifi
+      # network
+      curl
+      bind
       networkmanagerapplet
       networkmanager_dmenu
 
@@ -75,6 +78,7 @@
         "ExtensionInstallForcelist" = [
           "oboonakemofpalcgghocfoadofidjkkk" # keepassxc
           "hipncndjamdcmphkgngojegjblibadbe" # freeplanetvpn
+          "ponfpcnoihfmfllpaingbgckeeldkhle" # enhancer for youtube
         ];
       };
       flags = [
@@ -153,7 +157,7 @@
         { command = "keepassxc"; }
         { command = "flatpak run org.mozilla.thunderbird_esr"; }
         { command = "flatpak run org.ksnip.ksnip"; }
-        { command = "flatpak run com.microsoft.Edge"; }
+        { command = "flatpak run --socket=wayland com.microsoft.Edge"; }
         { command = "helium";}
 
         { command = "copyq --start-server"; }
@@ -222,7 +226,7 @@
         let
           mod = "Mod4";
           caps = "Mod3";
-          menuCommand = "${pkgs.rofi}/bin/rofi -show combi -combi-modes drun,run -modes combi";
+          menuCommand = "rofi -show combi -combi-modes drun,run -modes combi";
         in {
           "${mod}+Shift+F12" = "exec systemctl poweroff";
           "${mod}+Shift+F11" = "exec systemctl reboot";
@@ -235,6 +239,7 @@
           "${mod}+l" = "exec swaylock -C ~/.config/lock/config";
           "${mod}+Shift+s" = "exec grim -g \"$(slurp)\" - | wl-copy";
           "${caps}+Shift+s" = "exec grim -g \"$(slurp)\" ~/downloads/ss-$(date +%s).png";
+          "${mod}+p" = "exec curl -s ipinfo.io/ip | wl-copy";
           "${mod}+Return" = "exec foot";
           "${mod}+q" = "exec thunar";
           "${mod}+Left" = "focus left";
@@ -298,6 +303,9 @@
         swipe:4:up exec systemctl reboot
         swipe:4:down exec systemctl poweroff
       }
+      # Catch Edge's empty tooltip windows: float them, remove borders, snap to mouse, and prevent focus
+      for_window [app_id="^$" title="^$"] floating enable, border none
+      no_focus [app_id="^$" title="^$"]
     '';
   };
 }
