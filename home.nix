@@ -34,8 +34,8 @@
         })
         xfconf
         file-roller
-        universal-android-debloater
-        android-tools
+        # universal-android-debloater
+        # android-tools
 
         # network
         curl
@@ -49,8 +49,8 @@
 
         # tools
         code
-        nixd # nix ide support
-        nixfmt-rfc-style # nix ide support
+        nixd
+        nixfmt
 
         powershell
         git
