@@ -13,9 +13,15 @@
       "com.microsoft.Edge"
       "org.telegram.desktop"
       "com.rtosta.zapzap"
-      "org.mozilla.Thunderbird"
+      "org.mozilla.thunderbird_esr"
     ];
 
-    update.onActivation = true;
+    update = {
+      onActivation = true;
+      auto = {
+        enable = true;
+        onCalendar = "daily";
+      };
+    };
   };
 }

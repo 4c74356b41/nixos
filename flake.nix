@@ -15,6 +15,7 @@
       nixpkgs,
       home-manager,
       helium-flake,
+      nix-flatpak,
       ...
     }:
     {
@@ -25,6 +26,7 @@
           modules = [
             ./configuration.nix
             ./hardware-laptop.nix
+            nix-flatpak.nixosModules.nix-flatpak
             home-manager.nixosModules.home-manager
             {
               networking.hostName = "laptop";
@@ -44,6 +46,7 @@
           modules = [
             ./configuration.nix
             ./hardware-desktop.nix
+            nix-flatpak.nixosModules.nix-flatpak
             home-manager.nixosModules.home-manager
             {
               networking.hostName = "desktop";
