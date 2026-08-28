@@ -1,9 +1,15 @@
 {
   lib,
+  pkgs,
   isLaptop,
   ...
 }:
 {
+  programs.swaylock = {
+    enable = true;
+    package = pkgs.swaylock-effects;
+  };
+
   wayland.windowManager.sway = {
     enable = true;
     package = null;

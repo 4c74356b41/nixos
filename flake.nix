@@ -25,7 +25,7 @@
           specialArgs = { inherit helium-flake; };
           modules = [
             ./configuration.nix
-            ./hardware-laptop.nix
+            ./laptop/hardware.nix
             nix-flatpak.nixosModules.nix-flatpak
             home-manager.nixosModules.home-manager
             {
@@ -45,7 +45,7 @@
           specialArgs = { inherit helium-flake; };
           modules = [
             ./configuration.nix
-            ./hardware-desktop.nix
+            ./desktop/hardware.nix
             nix-flatpak.nixosModules.nix-flatpak
             home-manager.nixosModules.home-manager
             {

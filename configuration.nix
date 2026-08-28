@@ -81,14 +81,11 @@
       settings = {
         default_session = {
           user = "greeter";
-          command = "${lib.getExe pkgs.tuigreet} --time --asterisks --user-menu --cmd sway";
+          command = "${lib.getExe pkgs.tuigreet} --asterisks --user-menu --cmd sway";
         };
       };
     };
     onedrive = {
-      enable = true;
-    };
-    flatpak = {
       enable = true;
     };
     pipewire = {

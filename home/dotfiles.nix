@@ -48,6 +48,10 @@
       ignore-empty-password
       indicator-idle-visible
 
+      clock
+      timestr=%H:%M
+      datestr=%Y-%m-%d
+
       color=A3A3A3
       inside-color=000000
       ring-color=0000ff
