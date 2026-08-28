@@ -3,12 +3,9 @@
 
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 flatpak install flathub com.microsoft.Edge
-flatpak install flathub com.brave.Browser
 flatpak install flathub org.telegram.desktop
 flatpak install flathub com.rtosta.zapzap
 flatpak install flathub org.mozilla.Thunderbird
-flatpak install flathub org.keepassxc.KeePassXC
-flatpak install flathub org.ksnip.ksnip
 # flatpak install flathub org.gnome.Boxes
 
 # VS Code

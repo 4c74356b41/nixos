@@ -7,47 +7,53 @@
     helium-flake.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, helium-flake, ... }: {
-    nixosConfigurations = {
-      laptop = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          ./configuration.nix
-          ./hardware-laptop.nix
-          home-manager.nixosModules.home-manager
-          {
-            networking.hostName = "laptop";
-            nixpkgs.overlays = [ helium-flake.overlays.default ];
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = {
-              isLaptop = true;
-              inherit helium-flake;
-            };
-            home-manager.users.sway = import ./home.nix;
-          }
-        ];
-      };
+  outputs =
+    inputs@{
+      self,
+      nixpkgs,
+      home-manager,
+      helium-flake,
+      ...
+    }:
+    {
+      nixosConfigurations = {
+        laptop = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit helium-flake; };
+          modules = [
+            ./configuration.nix
+            ./hardware-laptop.nix
+            home-manager.nixosModules.home-manager
+            {
+              networking.hostName = "laptop";
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = {
+                isLaptop = true;
+              };
+              home-manager.users.sway = import ./home.nix;
+            }
+          ];
+        };
 
-      desktop = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          ./configuration.nix
-          ./hardware-desktop.nix
-          home-manager.nixosModules.home-manager
-          {
-            networking.hostName = "desktop";
-            nixpkgs.overlays = [ helium-flake.overlays.default ];
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = {
-              isLaptop = false;
-              inherit helium-flake;
-            };
-            home-manager.users.sway = import ./home.nix;
-          }
-        ];
+        desktop = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit helium-flake; };
+          modules = [
+            ./configuration.nix
+            ./hardware-desktop.nix
+            home-manager.nixosModules.home-manager
+            {
+              networking.hostName = "desktop";
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = {
+                isLaptop = false;
+              };
+              home-manager.users.sway = import ./home.nix;
+            }
+          ];
+        };
       };
     };
-  };
 }

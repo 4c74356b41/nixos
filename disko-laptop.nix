@@ -3,13 +3,13 @@
     disk = {
       main = {
         type = "disk";
-        device = "/dev/nvme0n1";   # adjust if your NVMe is different
+        device = "/dev/nvme0n1";
         content = {
           type = "gpt";
           partitions = {
             boot = {
               size = "1G";
-              type = "EF00";        # EFI system partition
+              type = "EF00";
               content = {
                 type = "filesystem";
                 format = "vfat";
@@ -21,12 +21,11 @@
               };
             };
             root = {
-              size = "100%";        # rest of the disk
+              size = "100%";
               content = {
                 type = "filesystem";
-                format = "ext4";    # you can change to btrfs if you prefer
+                format = "ext4";
                 mountpoint = "/";
-                # optional: if you want encryption, add:
                 # type = "luks";
                 # format = "luks";
                 # content = { type = "filesystem"; format = "ext4"; mountpoint = "/"; };

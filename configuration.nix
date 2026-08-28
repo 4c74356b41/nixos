@@ -1,6 +1,14 @@
-{ config, lib, pkgs, ... }: 
 {
-  imports = [];
+  config,
+  lib,
+  pkgs,
+  helium-flake,
+  ...
+}:
+{
+  imports = [
+    helium-flake.nixosModules.default
+  ];
 
   time.timeZone = "Europe/Minsk";
   boot = {
@@ -16,8 +24,13 @@
       ];
       options = "--delete-older-than 5d";
     };
-    settings.experimental-features = [ "nix-command" "flakes" ];
+    settings.experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
   };
+
+  nixpkgs.config.allowUnfree = true;
 
   networking = {
     networkmanager = {
@@ -32,6 +45,29 @@
       wrapperFeatures.gtk = true;
     };
     waybar.enable = false;
+    helium = {
+      enable = true;
+      policies = {
+        "BrowserSignin" = 0;
+        "PasswordManagerEnabled" = false;
+        "SyncDisabled" = true;
+        "HomepageLocation" = "https://youtube.com";
+        "DownloadDirectory" = "/home/sway/downloads";
+        "DefaultSearchProviderEnabled" = true;
+        "DefaultSearchProviderSearchURL" = "https://www.google.com/search?q={searchTerms}";
+        "RestoreOnStartup" = 1;
+        "ExtensionInstallForcelist" = [
+          "oboonakemofpalcgghocfoadofidjkkk" # keepassxc
+          "hipncndjamdcmphkgngojegjblibadbe" # freeplanetvpn
+          "ponfpcnoihfmfllpaingbgckeeldkhle" # enhancer for youtube
+        ];
+      };
+      flags = [
+        "--new-window"
+        "--ozone-platform=x11"
+        "--start-maximized"
+      ];
+    };
   };
 
   services = {
@@ -81,7 +117,7 @@
   systemd.services.greetd.serviceConfig = {
     Type = "idle";
     StandardInput = "tty";
-    StandartOutput = "tty";
+    StandardOutput = "tty";
     StandardError = "journal";
     TTYReset = true;
     TTYVHangup = true;
@@ -115,16 +151,5 @@
     ];
   };
 
-  environment = {
-    # .systemPackages = with pkgs; [
-    #   modprobed-db
-    # ];
-    etc."chromium/policies/managed/helium-nixos.json" = {
-      source = pkgs.writeText "helium-nixos.json" ''
-        {"BrowserSignin":0,"DefaultSearchProviderEnabled":true,"DefaultSearchProviderSearchURL":"https://www.google.com/search?q={searchTerms}","DownloadDirectory":"/home/sway/downloads","ExtensionInstallForcelist":["oboonakemofpalcgghocfoadofidjkkk","hipncndjamdcmphkgngojegjblibadbe","ponfpcnoihfmfllpaingbgckeeldkhle"],"HomepageLocation":"https://youtube.com","PasswordManagerEnabled":false,"SyncDisabled":true, "RestoreOnStartup": 1}
-      '';
-    };
-  };
-
-  system.stateVersion = "26.05";
+  system.stateVersion = "26.11";
 }
