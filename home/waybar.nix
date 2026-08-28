@@ -1,4 +1,9 @@
-{ config, lib, pkgs, isLaptop, ... }: 
+{
+  lib,
+  pkgs,
+  isLaptop,
+  ...
+}:
 
 {
   programs.waybar = {
@@ -174,8 +179,8 @@
           "clock"
           "network"
           "bluetooth"
-        ] ++ (lib.optional isLaptop "battery");
-
+        ]
+        ++ (lib.optional isLaptop "battery");
 
         "sway/language" = {
           format = "{}";
@@ -211,16 +216,17 @@
           on-click = "${pkgs.rofi-bluetooth}/bin/rofi-bluetooth";
           on-click-right = "bluetoothctl power $(bluetoothctl show | grep -q 'Powered: yes' && echo off || echo on)";
         };
-      } // (lib.optionalAttrs isLaptop {
-          battery = {
-            interval = 30;
-            format-charging = "▲▲ {capacity}%";
-            format-discharging = "{capacity}% ▼▼";
-            states = {
-              warning = 30;
-              critical = 13;
-            };
+      }
+      // (lib.optionalAttrs isLaptop {
+        battery = {
+          interval = 30;
+          format-charging = "▲▲ {capacity}%";
+          format-discharging = "{capacity}% ▼▼";
+          states = {
+            warning = 30;
+            critical = 13;
           };
+        };
       });
     };
   };

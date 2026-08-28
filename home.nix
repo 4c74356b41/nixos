@@ -1,9 +1,7 @@
 {
-  config,
   lib,
   pkgs,
   isLaptop,
-  helium-flake,
   ...
 }:
 {
