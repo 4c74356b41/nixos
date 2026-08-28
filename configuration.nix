@@ -8,6 +8,7 @@
 {
   imports = [
     helium-flake.nixosModules.default
+    ./flatpak.nix
   ];
 
   time.timeZone = "Europe/Minsk";
@@ -44,7 +45,7 @@
       enable = true;
       wrapperFeatures.gtk = true;
     };
-    waybar.enable = false;
+    waybar.enable = false; # managed by home-manager. until toggling this off I had 2 waybars :)
     helium = {
       enable = true;
       policies = {
@@ -151,5 +152,5 @@
     ];
   };
 
-  system.stateVersion = "26.11";
+  system.stateVersion = "26.05";
 }

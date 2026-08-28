@@ -17,7 +17,7 @@
   home = {
     username = "sway";
     homeDirectory = "/home/sway";
-    stateVersion = "26.11"; # Bumped to 26.11
+    stateVersion = "26.05";
     packages =
       with pkgs;
       [

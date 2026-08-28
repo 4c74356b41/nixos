@@ -209,7 +209,7 @@
       docker-compose.*.yml
 
       # PowerShell
-      *.ps1~ 
+      *.ps1~
       pwsh_history
       PSReadLine/
 
@@ -298,12 +298,10 @@
     '';
 
     ".config/powershell/Microsoft.PowerShell_profile.ps1".text = ''
-      Register-PSRepository -Default -ErrorAction SilentlyContinue
-      Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted -ErrorAction SilentlyContinue
-      "posh-git","az","microsoft.graph" | Foreach-Object {
-        if ( -not ( Get-Module -ListAvailable $PSItem ) ) {
-          Install-Module $PSItem
-        }
+      if ( -not (Get-Module -ListAvailable -Name "posh-git", "az", "microsoft.graph" -ErrorAction SilentlyContinue | Measure-Object).Count -eq 3 ) {
+        Register-PSRepository -Default -ErrorAction SilentlyContinue
+        Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted -ErrorAction SilentlyContinue
+        "posh-git","az","microsoft.graph" | ForEach-Object { Install-Module $_ -Force }
       }
 
       function debug-me() { Set-PSBreakpoint -Variable StackTrace -Mode Write }
@@ -524,22 +522,22 @@
     '';
 
     ".config/google-chrome/NativeMessagingHosts/org.keepassxc.keepassxc_browser.json".text = ''
-    {
-      "allowed_origins": [
-          "chrome-extension://pdffhmdngciaglkoonimfcmckehcpafo/",
-          "chrome-extension://oboonakemofpalcgghocfoadofidjkkk/"
-      ],
-      "description": "KeePassXC integration with native messaging support",
-      "name": "org.keepassxc.keepassxc_browser",
-      "path": "/etc/profiles/per-user/sway/bin/keepassxc-proxy",
-      "type": "stdio"
-    }
+      {
+        "allowed_origins": [
+            "chrome-extension://pdffhmdngciaglkoonimfcmckehcpafo/",
+            "chrome-extension://oboonakemofpalcgghocfoadofidjkkk/"
+        ],
+        "description": "KeePassXC integration with native messaging support",
+        "name": "org.keepassxc.keepassxc_browser",
+        "path": "/etc/profiles/per-user/sway/bin/keepassxc-proxy",
+        "type": "stdio"
+      }
     '';
 
     ".config/Thunar/accels.scm".text = ''
       ; Map Backspace to open the parent directory
       (gtk_accel_path "<Actions>/ThunarWindow/open-parent" "BackSpace")
-      
+
       ; Clear the default Backspace binding (which normally goes 'Back' in history)
       ; to prevent shortcut conflicts
       (gtk_accel_path "<Actions>/ThunarWindow/back-alt" "")

@@ -5,6 +5,8 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     helium-flake.url = "github:oxcl/nix-flake-helium-browser";
     helium-flake.inputs.nixpkgs.follows = "nixpkgs";
+
+    nix-flatpak.url = "github:gmodena/nix-flatpak/440818969ac2cbd77bfe025e884d0aa528991374";
   };
 
   outputs =

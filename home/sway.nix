@@ -45,7 +45,6 @@
       bars = [ ];
 
       startup = [
-        { command = "sleep 2 && swaymsg output HDMI-A-1 enable"; }
         { command = "foot"; }
         { command = "foot"; }
         { command = "code"; }
