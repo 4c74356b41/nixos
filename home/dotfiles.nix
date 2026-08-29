@@ -67,14 +67,12 @@
           excludesfile = ~/.config/git/ignore
       [pull]
           ff = only
-      [core]
 
       [push]
           autoSetupRemote = true
 
       [credential]
-          helper = ${pkgs.git-credential-manager}/bin/git-credential-manager
-          credentialStore = secretservice
+          helper = ${pkgs.git-credential-keepassxc}/bin/git-credential-keepassxc --git-groups
     '';
 
     ".config/git/ignore".text = ''

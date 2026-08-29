@@ -55,7 +55,7 @@
         powershell
         git
         gh
-        git-credential-manager
+        git-credential-keepassxc
 
         kubectl
         kubernetes-helm
