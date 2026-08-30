@@ -1,30 +1,21 @@
 {
-  config,
   lib,
   modulesPath,
   ...
 }:
-
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot = {
-    initrd = {
-      availableKernelModules = [
-        "nvme"
-        "xhci_pci"
-        "thunderbolt"
-        "usbhid"
-        "usb_storage"
-        "sd_mod"
-      ];
-      kernelModules = [ ];
-    };
-    kernelModules = [ "kvm-amd" ];
-    extraModulePackages = [ ];
-  };
+  boot.initrd.availableKernelModules = [
+    "nvme"
+    "xhci_pci"
+    "thunderbolt"
+    "usbhid"
+    "usb_storage"
+    "sd_mod"
+  ];
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/48cce877-f2d2-4f47-aa47-b8d451be1a8a";
@@ -40,12 +31,14 @@
     ];
   };
 
-  swapDevices = [ ];
-
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+
   hardware = {
-    bluetooth.enable = true;
-    bluetooth.powerOnBoot = true;
-    cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+    };
+    cpu.amd.updateMicrocode = true;
+    enableRedistributableFirmware = true;
   };
 }

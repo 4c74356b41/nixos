@@ -1,5 +1,4 @@
 {
-  config,
   lib,
   pkgs,
   modulesPath,
@@ -11,27 +10,21 @@
   ];
 
   boot = {
-    initrd = {
-      availableKernelModules = [
-        "nvme"
-        "xhci_pci"
-        "thunderbolt"
-        "usbhid"
-        "usb_storage"
-        "sd_mod"
-      ];
-      kernelModules = [ ];
-    };
+    initrd.availableKernelModules = [
+      "nvme"
+      "xhci_pci"
+      "thunderbolt"
+      "usbhid"
+      "usb_storage"
+      "sd_mod"
+    ];
+
     swraid = {
       enable = true;
       mdadmConf = ''
         PROGRAM ${pkgs.inetutils}/bin/logger -t mdadm-raid-alert
       '';
     };
-    extraModulePackages = [ ];
-    kernelModules = [ "kvm-amd" ];
-    # below is set in bios, so not needed
-    # kernelParams = [ "processor.max_cstate=1" ];
   };
 
   fileSystems."/" = {
@@ -48,13 +41,14 @@
     ];
   };
 
-  swapDevices = [ ];
-
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+
   hardware = {
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+    };
+    cpu.amd.updateMicrocode = true;
     enableRedistributableFirmware = true;
-    bluetooth.enable = true;
-    bluetooth.powerOnBoot = true;
-    cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   };
 }

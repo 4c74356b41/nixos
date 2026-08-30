@@ -4,6 +4,19 @@
   isLaptop,
   ...
 }:
+let
+  mkWorkspaceOutputs =
+    outputs:
+    lib.flatten (
+      lib.mapAttrsToList (
+        output: workspaces:
+        map (ws: {
+          workspace = toString ws;
+          inherit output;
+        }) workspaces
+      ) outputs
+    );
+in
 {
   programs.swaylock = {
     enable = true;
@@ -48,20 +61,18 @@
 
       bars = [ ];
 
-      startup = [
-        { command = "foot"; }
-        { command = "foot"; }
-        { command = "code"; }
-        { command = "flatpak run org.telegram.desktop"; }
-        { command = "flatpak run com.rtosta.zapzap"; }
-        { command = "keepassxc"; }
-        { command = "flatpak run org.mozilla.thunderbird_esr"; }
-        { command = "ksnip"; }
-        {
-          command = "exec flatpak run --socket=wayland com.microsoft.Edge --ozone-platform-hint=wayland --enable-features=VaapiVideoDecodeLinuxGL,VaapiVideoDecoder,WaylandWindowDecorations --ignore-gpu-blocklist --enable-gpu-rasterization --enable-zero-copy";
-        }
-        { command = "helium"; }
-        { command = "copyq --start-server"; }
+      startup = map (cmd: { command = cmd; }) [
+        "foot"
+        "foot"
+        "code"
+        "flatpak run org.telegram.desktop"
+        "flatpak run com.rtosta.zapzap"
+        "keepassxc"
+        "flatpak run org.mozilla.thunderbird_esr"
+        "ksnip"
+        "exec flatpak run --socket=wayland com.microsoft.Edge --ozone-platform-hint=wayland --enable-features=VaapiVideoDecodeLinuxGL,VaapiVideoDecoder,WaylandWindowDecorations --ignore-gpu-blocklist --enable-gpu-rasterization --enable-zero-copy"
+        "helium"
+        "copyq --start-server"
       ];
 
       input = {
@@ -87,75 +98,14 @@
 
       workspaceOutputAssign =
         if isLaptop then
-          [
-            {
-              workspace = "1";
-              output = "eDP-1";
-            }
-            {
-              workspace = "2";
-              output = "eDP-1";
-            }
-            {
-              workspace = "3";
-              output = "eDP-1";
-            }
-            {
-              workspace = "4";
-              output = "eDP-1";
-            }
-            {
-              workspace = "5";
-              output = "DP-1";
-            }
-            {
-              workspace = "6";
-              output = "DP-1";
-            }
-            {
-              workspace = "7";
-              output = "DP-1";
-            }
-            {
-              workspace = "8";
-              output = "DP-1";
-            }
-          ]
+          mkWorkspaceOutputs {
+            "eDP-1" = lib.range 1 4;
+            "DP-1" = lib.range 5 8;
+          }
         else
-          [
-            {
-              workspace = "1";
-              output = "HDMI-A-1";
-            }
-            {
-              workspace = "2";
-              output = "HDMI-A-1";
-            }
-            {
-              workspace = "3";
-              output = "HDMI-A-1";
-            }
-            {
-              workspace = "4";
-              output = "HDMI-A-1";
-            }
-            {
-              workspace = "5";
-              output = "HDMI-A-1";
-            }
-            {
-              workspace = "6";
-              output = "HDMI-A-1";
-            }
-            {
-              workspace = "7";
-              output = "HDMI-A-1";
-            }
-            {
-              workspace = "8";
-              output = "HDMI-A-1";
-            }
-          ];
+          mkWorkspaceOutputs {
+            "HDMI-A-1" = lib.range 1 8;
+          };
 
       assigns = {
         "1" = [ { app_id = "foot"; } ];
