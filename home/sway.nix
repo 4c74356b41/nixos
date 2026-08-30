@@ -57,7 +57,9 @@
         { command = "keepassxc"; }
         { command = "flatpak run org.mozilla.thunderbird_esr"; }
         { command = "ksnip"; }
-        { command = "flatpak run --socket=wayland com.microsoft.Edge"; }
+        {
+          command = "exec flatpak run --socket=wayland com.microsoft.Edge --ozone-platform-hint=wayland --enable-features=VaapiVideoDecodeLinuxGL,VaapiVideoDecoder,WaylandWindowDecorations --ignore-gpu-blocklist --enable-gpu-rasterization --enable-zero-copy";
+        }
         { command = "helium"; }
         { command = "copyq --start-server"; }
       ];

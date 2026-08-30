@@ -64,6 +64,7 @@
 
         azure-cli
         terraform
+        tflint
 
         jsonnet
         jq

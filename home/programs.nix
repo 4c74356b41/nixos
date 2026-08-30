@@ -177,6 +177,7 @@
           ms-python.vscode-pylance
           ms-python.vscode-python-envs
           ms-vscode.powershell
+          ms-kubernetes-tools.vscode-kubernetes-tools
           vscodevim.vim
           jnoortheen.nix-ide
         ];

@@ -30,6 +30,8 @@
     };
     extraModulePackages = [ ];
     kernelModules = [ "kvm-amd" ];
+    # below is set in bios, so not needed
+    # kernelParams = [ "processor.max_cstate=1" ];
   };
 
   fileSystems."/" = {
@@ -50,6 +52,7 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware = {
+    enableRedistributableFirmware = true;
     bluetooth.enable = true;
     bluetooth.powerOnBoot = true;
     cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

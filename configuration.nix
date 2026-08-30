@@ -65,8 +65,12 @@
       };
       flags = [
         "--new-window"
-        "--ozone-platform=x11"
         "--start-maximized"
+        "--ozone-platform=wayland"
+        "--enable-features=VaapiVideoDecodeLinuxGL,VaapiVideoDecoder,WaylandWindowDecorations"
+        "--ignore-gpu-blocklist"
+        "--enable-gpu-rasterization"
+        "--enable-zero-copy"
       ];
     };
   };
