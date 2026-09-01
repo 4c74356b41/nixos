@@ -27,6 +27,7 @@
         wl-clipboard
         copyq
         fastfetch
+        htop
 
         # files
         (pkgs.thunar.override {

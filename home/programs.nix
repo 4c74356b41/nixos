@@ -139,6 +139,9 @@
           "nix.serverPath" = "${pkgs.nixd}/bin/nixd";
 
           # --- PowerShell ---
+          "powershell.powerShellAdditionalExePaths" = {
+            "local" = "${pkgs.powershell}/bin/pwsh";
+          };
           "powershell.codeFormatting.autoCorrectAliases" = true;
           "powershell.codeFormatting.pipelineIndentationStyle" = "IncreaseIndentationForFirstPipeline";
           "powershell.codeFormatting.useCorrectCasing" = true;
