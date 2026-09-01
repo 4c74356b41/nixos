@@ -73,6 +73,21 @@
 
       [credential]
           helper = ${pkgs.git-credential-keepassxc}/bin/git-credential-keepassxc --git-groups
+
+      [includeIf "gitdir:~/_git/"]
+        path = ~/.config/git/work
+
+      [includeIf "gitdir:~/nixos/"]
+        path = ~/.config/git/personal
+    '';
+
+    ".config/git/personal".text = ''
+      [credential "https://github.com"]
+        username = 4c74356b41
+    '';
+
+    ".config/git/work".text = ''
+      # dummy
     '';
 
     ".config/git/ignore".text = ''
