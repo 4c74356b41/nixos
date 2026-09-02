@@ -210,7 +210,8 @@
         bluetooth = {
           format-off = "bt";
           format-on = "bt";
-          format = "bt";
+          format = "bt"; # only needed so that there is no UI bug during BT device transition
+          format-connected-battery = "{device_battery_percentage}%";
           tooltip = false;
 
           on-click = "${pkgs.rofi-bluetooth}/bin/rofi-bluetooth";

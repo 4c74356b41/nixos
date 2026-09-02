@@ -70,6 +70,12 @@
         jsonnet
         jq
         yq
+
+        # coming from programs
+        # code
+        # keepassxc
+        # foot
+        # helium >> this one comes from global config
       ]
       ++ (lib.optional isLaptop pkgs.brightnessctl);
   };

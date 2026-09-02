@@ -119,7 +119,7 @@ in
         ];
         "4" = [ { app_id = "org.ksnip.ksnip"; } ];
         "5" = [ { app_id = "code"; } ];
-        "6" = [ { app_id = "Helium"; } ];
+        "6" = [ { app_id = "helium"; } ];
         "7" = [ { app_id = "microsoft-edge"; } ];
         "8" = [ { app_id = "org.gnome.Boxes"; } ];
       };
