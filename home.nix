@@ -53,6 +53,7 @@
         nixd
         nixfmt
 
+        python312
         powershell
         git
         gh
@@ -71,11 +72,14 @@
         jq
         yq
 
-        # coming from programs
+        # defined in programs
         # code
         # keepassxc
         # foot
         # helium >> this one comes from global config
+
+        # only needed temporary
+        gcc
       ]
       ++ (lib.optional isLaptop pkgs.brightnessctl);
   };
