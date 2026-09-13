@@ -56,11 +56,17 @@
         "DownloadDirectory" = "/home/sway/downloads";
         "DefaultSearchProviderEnabled" = true;
         "DefaultSearchProviderSearchURL" = "https://www.google.com/search?q={searchTerms}";
-        "RestoreOnStartup" = 1;
+        "RestoreOnStartup" = 4;
+        "RestoreOnStartupURLs" = [
+          "https://youtube.com"
+          "https://chat.deepseek.com/"
+          "https://gemini.google.com/app"
+        ];
         "ExtensionInstallForcelist" = [
           "oboonakemofpalcgghocfoadofidjkkk" # keepassxc
           "hipncndjamdcmphkgngojegjblibadbe" # freeplanetvpn
           "ponfpcnoihfmfllpaingbgckeeldkhle" # enhancer for youtube
+          "dbepggeogbaibhgnhhndojpepiihcmeb" # vimium
         ];
       };
       flags = [

@@ -26,8 +26,10 @@
         slurp
         wl-clipboard
         copyq
+
+        # nixos debug
         fastfetch
-        htop
+        btop
 
         # files
         (pkgs.thunar.override {
@@ -49,6 +51,7 @@
         playerctl
 
         # tools
+        lazygit
         code
         nixd
         nixfmt
@@ -76,7 +79,8 @@
         # code
         # keepassxc
         # foot
-        # helium >> this one comes from global config
+        # defined in global config
+        # helium
 
         # only needed temporary
         gcc
