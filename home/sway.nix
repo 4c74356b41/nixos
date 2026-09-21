@@ -46,10 +46,22 @@ in
               };
             }
           else
+            # Old single ultrawide setup:
+            # {
+            #   "HDMI-A-1" = {
+            #     mode = "3440x1440@99.982Hz";
+            #     position = "0,0";
+            #   };
+            # }
+            # UAE dual-monitor setup (HDMI-A-1 left, DP-7 right):
             {
               "HDMI-A-1" = {
-                mode = "3440x1440@99.982Hz";
+                mode = "2560x1440@74.968Hz";
                 position = "0,0";
+              };
+              "DP-7" = {
+                mode = "2560x1440@74.999Hz";
+                position = "2560,0";
               };
             }
         )
@@ -104,10 +116,12 @@ in
           }
         else
           mkWorkspaceOutputs {
-            "HDMI-A-1" = lib.range 1 8;
+            "DP-7" = lib.range 1 4; # Win + 1..4 on DP-7 (Right)
+            "HDMI-A-1" = lib.range 5 8; # Caps + Q..R on HDMI-A-1 (Left)
           };
 
       assigns = {
+        # Right Monitor (DP-7, Win + 1..4):
         "1" = [ { app_id = "foot"; } ];
         "2" = [
           { app_id = "org.telegram.desktop"; }
@@ -118,6 +132,8 @@ in
           { app_id = "org.mozilla.thunderbird_esr"; }
         ];
         "4" = [ { app_id = "org.ksnip.ksnip"; } ];
+
+        # Left Monitor (HDMI-A-1, Caps + Q..R):
         "5" = [ { app_id = "code"; } ];
         "6" = [ { app_id = "helium"; } ];
         "7" = [ { app_id = "microsoft-edge"; } ];
@@ -138,8 +154,10 @@ in
           menuCommand = "rofi -show combi -combi-modes drun,run -modes combi";
         in
         {
-          "${mod}+Shift+F12" = "exec systemctl poweroff";
-          "${mod}+Shift+F11" = "exec systemctl reboot";
+          "${mod}+Shift+F12" =
+            "exec sh -c 'swaymsg \"[app_id=.*] kill; [class=.*] kill\"; sleep 1.5; systemctl poweroff'";
+          "${mod}+Shift+F11" =
+            "exec sh -c 'swaymsg \"[app_id=.*] kill; [class=.*] kill\"; sleep 1.5; systemctl reboot'";
           "${mod}+Shift+F10" = "exec systemctl suspend";
           "Alt+F4" = "kill";
           "${mod}+Shift+c" = "reload";
@@ -211,8 +229,8 @@ in
       bindgesture {
         swipe:4:left exec grim -g "$(slurp)" - | wl-copy
         swipe:4:right exec grim -g "$(slurp)" ~/downloads/ss-$(date +%s).png
-        swipe:4:up exec systemctl reboot
-        swipe:4:down exec systemctl poweroff
+        swipe:4:up exec sh -c 'swaymsg "[app_id=.*] kill; [class=.*] kill"; sleep 1.5; systemctl reboot'
+        swipe:4:down exec sh -c 'swaymsg "[app_id=.*] kill; [class=.*] kill"; sleep 1.5; systemctl poweroff'
       }
       # Catch Edge's empty tooltip windows: float them, remove borders, snap to mouse, and prevent focus
       for_window [app_id="^$" title="^$"] floating enable, border none

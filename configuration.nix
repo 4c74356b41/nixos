@@ -11,7 +11,7 @@
     ./flatpak.nix
   ];
 
-  time.timeZone = "Europe/Minsk";
+  time.timeZone = "Asia/Dubai";
   boot = {
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
@@ -59,7 +59,6 @@
         "RestoreOnStartup" = 4;
         "RestoreOnStartupURLs" = [
           "https://youtube.com"
-          "https://chat.deepseek.com/"
           "https://gemini.google.com/app"
         ];
         "ExtensionInstallForcelist" = [
