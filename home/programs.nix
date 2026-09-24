@@ -25,6 +25,7 @@
         Security = {
           AutoLockAfterMinimized = true;
           AutoLockTimeout = 15;
+
           EnableCopyOnDoubleClick = true;
         };
         FdoSecrets = {
@@ -35,6 +36,13 @@
     vscode = {
       enable = true;
       profiles.default = {
+        keybindings = [
+          {
+            key = "alt+shift+f";
+            command = "editor.action.formatDocument";
+            when = "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor";
+          }
+        ];
         userSettings = {
           # --- UI & Layout ---
           "breadcrumbs.enabled" = false;

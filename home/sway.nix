@@ -82,7 +82,7 @@ in
         "keepassxc"
         "flatpak run org.mozilla.thunderbird_esr"
         "ksnip"
-        "exec flatpak run --socket=wayland com.microsoft.Edge --ozone-platform-hint=wayland --enable-features=VaapiVideoDecodeLinuxGL,VaapiVideoDecoder,WaylandWindowDecorations --ignore-gpu-blocklist --enable-gpu-rasterization --enable-zero-copy"
+        "exec flatpak run --socket=wayland --socket=pulseaudio com.microsoft.Edge --ozone-platform-hint=wayland --enable-features=VaapiVideoDecodeLinuxGL,VaapiVideoDecoder,WaylandWindowDecorations --ignore-gpu-blocklist --enable-gpu-rasterization --enable-zero-copy"
         "helium"
         "copyq --start-server"
       ];

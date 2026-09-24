@@ -80,6 +80,8 @@
     };
   };
 
+  security.rtkit.enable = true;
+
   services = {
     speechd = {
       enable = false;
@@ -101,6 +103,22 @@
       enable = true;
       alsa.enable = true;
       pulse.enable = true;
+      wireplumber = {
+        enable = true;
+        extraConfig = {
+          "10-bluez" = {
+            "monitor.bluez.properties" = {
+              "bluez5.enable-msbc" = true;
+              "bluez5.enable-hw-volume" = true;
+            };
+          };
+          "11-bluetooth-policy" = {
+            "wireplumber.settings" = {
+              "bluetooth.autoswitch-to-headset-profile" = true;
+            };
+          };
+        };
+      };
     };
     power-profiles-daemon = {
       enable = config.networking.hostName == "laptop";
