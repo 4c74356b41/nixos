@@ -38,9 +38,19 @@
       profiles.default = {
         keybindings = [
           {
+            key = "ctrl+alt+s";
+            command = "workbench.action.files.saveWithoutFormatting";
+            when = "editorTextFocus";
+          }
+          {
             key = "alt+shift+f";
             command = "editor.action.formatDocument";
             when = "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor";
+          }
+          {
+            key = "alt+shift+d";
+            command = "workbench.files.action.compareFileWith";
+            when = "editorFocus";
           }
         ];
         userSettings = {
@@ -61,6 +71,13 @@
           "editor.renderWhitespace" = "all";
           "editor.unicodeHighlight.invisibleCharacters" = true;
           "editor.unicodeHighlight.nonBasicASCII" = false;
+          "json.format.keepLines" = true;
+
+          # --- File Associations ---
+          "files.associations" = {
+            ".github/workflows/*.yaml" = "jsonc";
+            ".github/workflows/*.yml" = "jsonc";
+          };
 
           # --- File & Save Standards ---
           "files.eol" = "\n";
@@ -122,11 +139,13 @@
             "editor.autoIndent" = "advanced";
             "editor.insertSpaces" = true;
             "editor.tabSize" = 2;
+            "editor.defaultFormatter" = "vscode.json-language-features";
           };
           "[jsonc]" = {
             "editor.autoIndent" = "advanced";
             "editor.insertSpaces" = true;
             "editor.tabSize" = 2;
+            "editor.defaultFormatter" = "vscode.json-language-features";
           };
           "[nix]" = {
             "editor.defaultFormatter" = "jnoortheen.nix-ide";
@@ -139,6 +158,7 @@
             "editor.autoIndent" = "advanced";
             "editor.insertSpaces" = true;
             "editor.tabSize" = 2;
+            "editor.defaultFormatter" = "redhat.vscode-yaml";
           };
 
           # --- Nix IDE System Paths ---
@@ -191,6 +211,7 @@
           ms-kubernetes-tools.vscode-kubernetes-tools
           vscodevim.vim
           jnoortheen.nix-ide
+          redhat.vscode-yaml
         ];
       };
     };

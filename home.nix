@@ -51,7 +51,6 @@
         playerctl
 
         # tools
-        lazygit
         code
         nixd
         nixfmt
@@ -62,10 +61,10 @@
         gh
         git-credential-keepassxc
 
-        kubectl
-        kubernetes-helm
-        fluxcd
-        istioctl
+        # kubectl
+        # kubernetes-helm
+        # fluxcd
+        # istioctl
 
         azure-cli
         terraform
@@ -75,15 +74,15 @@
         jq
         yq
 
+        antigravity-cli
+        yt-dlp
+
         # defined in programs
         # code
         # keepassxc
         # foot
         # defined in global config
         # helium
-
-        # only needed temporary
-        gcc
       ]
       ++ (lib.optional isLaptop pkgs.brightnessctl);
   };
