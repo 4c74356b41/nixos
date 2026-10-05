@@ -215,7 +215,7 @@
           tooltip = false;
 
           on-click = "${pkgs.rofi-bluetooth}/bin/rofi-bluetooth";
-          on-click-right = "bluetoothctl power $(bluetoothctl show | grep -q 'Powered: yes' && echo off || echo on)";
+          on-click-right = "exec rfkill toggle bluetooth";
         };
       }
       // (lib.optionalAttrs isLaptop {

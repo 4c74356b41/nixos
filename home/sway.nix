@@ -159,6 +159,7 @@ in
           "${mod}+Shift+F11" =
             "exec sh -c 'swaymsg \"[app_id=.*] kill; [class=.*] kill\"; sleep 1.5; systemctl reboot'";
           "${mod}+Shift+F10" = "exec systemctl suspend";
+          "${mod}+Shift+F9" = "exec rfkill toggle bluetooth";
           "Alt+F4" = "kill";
           "${mod}+Shift+c" = "reload";
           "${mod}+Tab" = "workspace next";
