@@ -73,9 +73,6 @@
         "--start-maximized"
         "--ozone-platform=wayland"
         "--enable-features=VaapiVideoDecodeLinuxGL,VaapiVideoDecoder,WaylandWindowDecorations"
-        "--ignore-gpu-blocklist"
-        "--enable-gpu-rasterization"
-        "--enable-zero-copy"
       ];
     };
   };
@@ -83,6 +80,12 @@
   security.rtkit.enable = true;
 
   services = {
+    hermes-agent = {
+      enable = true;
+      addToSystemPackages = true;
+      settings = { };
+    };
+
     speechd = {
       enable = false;
     };
@@ -163,6 +166,8 @@
     podman = {
       enable = true;
       defaultNetwork.settings.dns_enabled = true;
+      dockerCompat = true;
+      autoPrune.enable = true;
     };
   };
 
@@ -173,6 +178,7 @@
       "podman"
       "networkmanager"
       "adbusers"
+      "kvm"
     ];
   };
 

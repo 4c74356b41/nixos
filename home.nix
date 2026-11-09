@@ -2,16 +2,16 @@
   lib,
   pkgs,
   isLaptop,
-  nixpkgs-unstable,
-  antigravity-nix,
+  # nixpkgs-unstable,
+  # antigravity-nix,
   ...
 }:
-let
-  pkgs-unstable = import nixpkgs-unstable {
-    inherit (pkgs) system;
-    config = pkgs.config;
-  };
-in
+# let
+#   pkgs-unstable = import nixpkgs-unstable {
+#     inherit (pkgs) system;
+#     config = pkgs.config;
+#   };
+# in
 {
   imports = [
     ./home/waybar.nix
@@ -35,9 +35,10 @@ in
         wl-clipboard
         copyq
 
-        # nixos debug
+        # nixos
         fastfetch
         btop
+        podman-compose
 
         # files
         (pkgs.thunar.override {
@@ -45,8 +46,6 @@ in
         })
         xfconf
         file-roller
-        # universal-android-debloater
-        # android-tools
 
         # network
         curl
@@ -75,15 +74,18 @@ in
         # istioctl
 
         azure-cli
-        terraform
-        tflint
+        # terraform
+        # tflint
 
         jsonnet
         jq
         yq
 
-        antigravity-nix.packages.${pkgs.stdenv.hostPlatform.system}.google-antigravity-cli
-        pkgs-unstable.yt-dlp
+        # antigravity-nix.packages.${pkgs.stdenv.hostPlatform.system}.google-antigravity-cli
+        # pkgs-unstable.yt-dlp
+
+        claude-code
+        rtk
 
         # defined in programs
         # code
@@ -92,6 +94,11 @@ in
         # defined in global config
         # helium
       ]
-      ++ (lib.optional isLaptop pkgs.brightnessctl);
+      ++ (lib.optional isLaptop pkgs.brightnessctl)
+      ++ (lib.optionals (!isLaptop) [
+        pkgs.android-studio
+        pkgs.android-tools
+        pkgs.jdk17
+      ]);
   };
 }

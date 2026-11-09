@@ -512,13 +512,11 @@
           }
       }
 
-      function workhour-me ([int]$offset, $hours = 8) {
-        $now = Get-Date
-        $month = $now.Month + $offset
-        ( 1..[DateTime]::DaysInMonth( $now.Year, $month) ).where{
-          ( Get-Date -Day $_ -Month $month ).DayOfWeek -in 1..5
-        }.count * $hours
-      }
+      # Android development
+      $env:ANDROID_HOME = "$HOME/Android/Sdk"
+      $env:ANDROID_SDK_ROOT = $env:ANDROID_HOME
+      $env:PATH += ":$env:ANDROID_HOME/platform-tools"
+      $env:PATH += ":$env:ANDROID_HOME/emulator"
 
       function base64-file-me ($b64, $filename = "b64.temp", $print = $true, $encode = $false) {
         if ($encode) {
@@ -533,8 +531,6 @@
           }
         }
       }
-
-      # Clear-Host
 
     '';
 

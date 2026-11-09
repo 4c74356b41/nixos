@@ -1,18 +1,31 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/148bab9c1c3c53136ecb44a6ea356a0ed5b39b06";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    home-manager.url = "github:nix-community/home-manager/bf9ce9fec78f95f374e8dd3b503863a3ec128ebe";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    helium-flake.url = "github:oxcl/nix-flake-helium-browser";
-    helium-flake.inputs.nixpkgs.follows = "nixpkgs";
 
-    antigravity-nix = {
-      url = "github:jacopone/antigravity-nix";
+    home-manager = {
+      url = "github:nix-community/home-manager/bf9ce9fec78f95f374e8dd3b503863a3ec128ebe";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-flatpak.url = "github:gmodena/nix-flatpak/440818969ac2cbd77bfe025e884d0aa528991374";
+    helium-flake = {
+      url = "github:oxcl/nix-flake-helium-browser";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    hermes-agent = {
+      url = "github:NousResearch/hermes-agent";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
+    nix-flatpak = {
+      url = "github:gmodena/nix-flatpak/440818969ac2cbd77bfe025e884d0aa528991374";
+    };
+
+    # antigravity-nix = {
+    #   url = "github:jacopone/antigravity-nix";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
   };
 
   outputs =
@@ -22,8 +35,9 @@
       nixpkgs-unstable,
       home-manager,
       helium-flake,
+      hermes-agent,
       nix-flatpak,
-      antigravity-nix,
+      # antigravity-nix,
       ...
     }:
     {
@@ -40,11 +54,11 @@
               networking.hostName = "laptop";
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
+              home-manager.users.sway = import ./home.nix;
               home-manager.extraSpecialArgs = {
                 isLaptop = true;
-                inherit nixpkgs-unstable antigravity-nix;
+                # inherit nixpkgs-unstable antigravity-nix;
               };
-              home-manager.users.sway = import ./home.nix;
             }
           ];
         };
@@ -57,13 +71,14 @@
             ./desktop/hardware.nix
             nix-flatpak.nixosModules.nix-flatpak
             home-manager.nixosModules.home-manager
+            hermes-agent.nixosModules.default
             {
               networking.hostName = "desktop";
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.extraSpecialArgs = {
                 isLaptop = false;
-                inherit nixpkgs-unstable antigravity-nix;
+                # inherit nixpkgs-unstable antigravity-nix;
               };
               home-manager.users.sway = import ./home.nix;
             }
