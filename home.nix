@@ -58,7 +58,6 @@
         playerctl
 
         # tools
-        code
         nixd
         nixfmt
 
@@ -87,11 +86,11 @@
         claude-code
         rtk
 
-        # defined in programs
+        # defined in home/programs.nix
         # code
         # keepassxc
         # foot
-        # defined in global config
+        # defined in configuration.nix
         # helium
       ]
       ++ (lib.optional isLaptop pkgs.brightnessctl)
