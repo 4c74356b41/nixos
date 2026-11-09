@@ -80,22 +80,15 @@
   security.rtkit.enable = true;
 
   services = {
-    hermes-agent = {
-      enable = true;
-      addToSystemPackages = true;
-      settings = { };
-    };
-
     speechd = {
       enable = false;
     };
-
     greetd = {
       enable = true;
       settings = {
         default_session = {
           user = "greeter";
-          command = "${lib.getExe pkgs.tuigreet} --asterisks --user-menu --cmd sway";
+          command = "${lib.getExe pkgs.tuigreet} --asterisks --user-menu --user-menu-min-uid 1000 --cmd sway";
         };
       };
     };

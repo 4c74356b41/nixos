@@ -74,6 +74,12 @@
             hermes-agent.nixosModules.default
             {
               networking.hostName = "desktop";
+              users.users.sway.extraGroups = [ "hermes" ];
+              services.hermes-agent = {
+                enable = true;
+                addToSystemPackages = true;
+                settings = { };
+              };
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.extraSpecialArgs = {
