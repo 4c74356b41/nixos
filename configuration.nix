@@ -88,7 +88,7 @@
       settings = {
         default_session = {
           user = "greeter";
-          command = "${lib.getExe pkgs.tuigreet} --asterisks --user-menu --user-menu-min-uid 1000 --cmd sway";
+          command = "${lib.getExe pkgs.tuigreet} --asterisks --user-menu --user-menu-min-uid 1000 --user-menu-max-uid 1001 --cmd sway";
         };
       };
     };

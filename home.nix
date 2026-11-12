@@ -2,16 +2,10 @@
   lib,
   pkgs,
   isLaptop,
+  antigravity-nix,
   # nixpkgs-unstable,
-  # antigravity-nix,
   ...
 }:
-# let
-#   pkgs-unstable = import nixpkgs-unstable {
-#     inherit (pkgs) system;
-#     config = pkgs.config;
-#   };
-# in
 {
   imports = [
     ./home/waybar.nix
@@ -80,10 +74,11 @@
         jq
         yq
 
-        # antigravity-nix.packages.${pkgs.stdenv.hostPlatform.system}.google-antigravity-cli
-        # pkgs-unstable.yt-dlp
+        antigravity-nix.packages.${pkgs.stdenv.hostPlatform.system}.google-antigravity-cli
+        yt-dlp
 
         claude-code
+        codex
         rtk
 
         # defined in home/programs.nix
