@@ -175,5 +175,6 @@
     ];
   };
 
+  environment.variables.JAVA_HOME = "${pkgs.jdk17}"; # android studio fix
   system.stateVersion = "26.05";
 }

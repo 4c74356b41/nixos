@@ -67,8 +67,8 @@
         # istioctl
 
         azure-cli
-        # terraform
-        # tflint
+        terraform
+        tflint
 
         jsonnet
         jq
