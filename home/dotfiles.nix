@@ -77,10 +77,7 @@
       [includeIf "gitdir:~/_git/"]
         path = ~/.config/git/work
 
-      [includeIf "gitdir:~/nixos/"]
-        path = ~/.config/git/personal
-
-      [includeIf "gitdir:~/memo/"]
+      [includeIf "gitdir:~/personal/"]
         path = ~/.config/git/personal
     '';
 

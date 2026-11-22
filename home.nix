@@ -81,6 +81,9 @@
         codex
         rtk
 
+        # notes
+        obsidian
+
         # defined in home/programs.nix
         # code
         # keepassxc
