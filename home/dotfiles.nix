@@ -79,6 +79,9 @@
 
       [includeIf "gitdir:~/nixos/"]
         path = ~/.config/git/personal
+
+      [includeIf "gitdir:~/memo/"]
+        path = ~/.config/git/personal
     '';
 
     ".config/git/personal".text = ''
